@@ -1,0 +1,125 @@
+aid: spark-hire
+name: Spark Hire
+review:
+  question: Does Spark Hire expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-10'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Spark Hire's public API is
+    request/response REST over HTTPS under https://api.sparkhire.com/v1.0.
+    Its only server-push mechanism is outbound HTTP webhooks - Spark Hire
+    POSTs a changed object to a URL you register for a subscribed event.
+    That is server-to-endpoint HTTP, not a WebSocket or SSE stream on Spark
+    Hire's own API, so there is no AsyncAPI channel to model here. (Webhooks
+    could be modeled as an AsyncAPI application in a later pass, but no
+    persistent bidirectional or SSE transport exists.)
+findings:
+  summary: |
+    Spark Hire does not publish a documented public WebSocket API. Spark Hire
+    is a video interviewing and talent assessment platform. Its API is a
+    RESTful JSON API served under https://api.sparkhire.com/v1.0, authenticated
+    with HTTP Basic where the username is a per-user API key and the password
+    is ignored. All documented endpoints use GET, POST, PUT, or DELETE over
+    HTTPS. Instead of a realtime socket, Spark Hire offers outbound webhooks:
+    you register a URL and Spark Hire POSTs the changed interview or job object
+    to it when a subscribed event fires. No realtime, bidirectional, or
+    streaming WebSocket (ws:// or wss://) endpoint is documented anywhere in
+    the Spark Hire API reference as of the review date.
+  accessModel: |
+    The API reference at https://docs.sparkhire.com/ is fully public, but API
+    access is NOT self-serve - it must be enabled on your Spark Hire account by
+    Spark Hire before keys will work. Endpoint paths and behavior in this
+    catalog are transcribed from that public reference; request/response
+    schemas in the OpenAPI are honestly modeled from the documented resources
+    and were not exercised live (access-gated).
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.sparkhire.com/v1.0
+      documented: true
+      note: JSON request/response. HTTP Basic auth (username = API key, password ignored).
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Spark Hire POSTs changed objects to a registered URL on subscribed events. Outbound HTTP, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in the Spark Hire API reference as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://api.sparkhire.com/v1.0/me
+    - GET    https://api.sparkhire.com/v1.0/plan
+    - GET    https://api.sparkhire.com/v1.0/companies/{uuid}
+    - GET    https://api.sparkhire.com/v1.0/users
+    - POST   https://api.sparkhire.com/v1.0/users
+    - GET    https://api.sparkhire.com/v1.0/users/{uuid}
+    - PUT    https://api.sparkhire.com/v1.0/users/{uuid}
+    - DELETE https://api.sparkhire.com/v1.0/users/{uuid}
+    - GET    https://api.sparkhire.com/v1.0/users/{uuid}/integration_key
+    - POST   https://api.sparkhire.com/v1.0/users/{uuid}/integration_key
+    - PUT    https://api.sparkhire.com/v1.0/users/{uuid}/integration_key
+    - DELETE https://api.sparkhire.com/v1.0/users/{uuid}/integration_key
+    - GET    https://api.sparkhire.com/v1.0/jobs
+    - POST   https://api.sparkhire.com/v1.0/jobs
+    - GET    https://api.sparkhire.com/v1.0/jobs/{uuid}
+    - PUT    https://api.sparkhire.com/v1.0/jobs/{uuid}
+    - DELETE https://api.sparkhire.com/v1.0/jobs/{uuid}
+    - GET    https://api.sparkhire.com/v1.0/interviews
+    - POST   https://api.sparkhire.com/v1.0/interviews
+    - GET    https://api.sparkhire.com/v1.0/interviews/{uuid}
+    - PUT    https://api.sparkhire.com/v1.0/interviews/{uuid}
+    - DELETE https://api.sparkhire.com/v1.0/interviews/{uuid}
+    - GET    https://api.sparkhire.com/v1.0/interviews/{uuid}/questions
+    - POST   https://api.sparkhire.com/v1.0/interviews/{uuid}/questions
+    - GET    https://api.sparkhire.com/v1.0/interviews/{uuid}/questions/{question_uuid}
+    - PUT    https://api.sparkhire.com/v1.0/interviews/{uuid}/questions/{question_uuid}
+    - DELETE https://api.sparkhire.com/v1.0/interviews/{uuid}/questions/{question_uuid}
+    - GET    https://api.sparkhire.com/v1.0/question_sets
+    - POST   https://api.sparkhire.com/v1.0/question_sets
+    - GET    https://api.sparkhire.com/v1.0/question_sets/{uuid}
+    - PUT    https://api.sparkhire.com/v1.0/question_sets/{uuid}
+    - DELETE https://api.sparkhire.com/v1.0/question_sets/{uuid}
+    - GET    https://api.sparkhire.com/v1.0/interviews/{uuid}/share_link
+    - POST   https://api.sparkhire.com/v1.0/interviews/{uuid}/share_link
+    - PUT    https://api.sparkhire.com/v1.0/interviews/{uuid}/share_link/{link_uuid}
+    - GET    https://api.sparkhire.com/v1.0/share_links
+    - POST   https://api.sparkhire.com/v1.0/share_links
+    - GET    https://api.sparkhire.com/v1.0/share_links/{uuid}
+    - PUT    https://api.sparkhire.com/v1.0/share_links/{uuid}
+    - DELETE https://api.sparkhire.com/v1.0/share_links/{uuid}
+    - GET    https://api.sparkhire.com/v1.0/webhooks
+    - POST   https://api.sparkhire.com/v1.0/webhooks
+    - DELETE https://api.sparkhire.com/v1.0/webhooks/{uuid}
+    - GET    https://api.sparkhire.com/v1.0/webhooks/replay/{event}
+  webhookEventTypes:
+    - InterviewCreated
+    - InterviewAccepted
+    - InterviewCompleted
+    - InterviewDeleted
+    - InterviewExpired
+    - InterviewRescheduled
+    - InterviewReset
+    - InterviewRated
+    - JobCreated
+    - JobUpdated
+    - JobDeleted
+sources:
+  - url: https://docs.sparkhire.com/
+    type: APIReference
+    note: RESTful JSON API, base https://api.sparkhire.com/v1.0, HTTP Basic auth, 400 req/min rate limit, webhooks. No WebSocket.
+  - url: https://www.sparkhire.com/
+    type: Website
+    note: Product marketing for video interviewing and assessment.
+  - url: https://www.sparkhire.com/pricing/
+    type: Pricing
+    note: Product-based tiered pricing scaling with company size; annual billing.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Spark Hire's public API is
+    request/response REST plus outbound HTTP webhooks. No AsyncAPI document
+    was created because there is no persistent server-push transport
+    (WebSocket or SSE) on Spark Hire's own API to model.

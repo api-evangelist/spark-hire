@@ -1,0 +1,179 @@
+aid: spark-hire
+url: https://raw.githubusercontent.com/api-evangelist/spark-hire/refs/heads/main/apis.yml
+name: Spark Hire
+kind: company
+description: Spark Hire is a video interviewing and talent assessment platform that
+  lets recruiters screen, interview, and evaluate candidates asynchronously and live.
+  The Spark Hire REST API embeds video interviewing into an applicant tracking system
+  or custom hiring app - programmatically managing jobs, one-way and live interviews,
+  interview questions and question sets, company users (evaluators), candidate share
+  links, and webhook subscriptions for interview and job lifecycle events. Responses
+  are JSON over HTTPS under https://api.sparkhire.com/v1.0, authenticated with a
+  per-user API key via HTTP Basic. API access is not self-serve - it must be enabled
+  on your account by Spark Hire - but the API reference is fully public.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Video Interviewing
+- Recruiting
+- Hiring
+- HR Tech
+- Talent Assessment
+- ATS
+created: '2026-07-10'
+modified: '2026-07-10'
+specificationVersion: '0.19'
+apis:
+- aid: spark-hire:spark-hire-interviews-api
+  name: Spark Hire Interviews API
+  tags:
+  - Interviews
+  - Video Interviewing
+  - Candidates
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.sparkhire.com/
+  baseURL: https://api.sparkhire.com/v1.0
+  properties:
+  - url: https://docs.sparkhire.com/
+    type: Documentation
+  - url: https://docs.sparkhire.com/
+    type: APIReference
+  - url: openapi/spark-hire-openapi.yml
+    type: OpenAPI
+  - url: collections/spark-hire.postman_collection.json
+    type: PostmanCollection
+  - url: collections/spark-hire.opencollection.json
+    type: OpenCollection
+  description: Create, list, retrieve, update, and delete one-way and live video
+    interviews - the core artifact a candidate records or attends. Interviews are
+    tied to a job and to a candidate, carry a status lifecycle (created, accepted,
+    completed, expired, rescheduled, reset, rated), and can be surfaced to reviewers
+    via basic or advanced share links. Candidate evaluation is captured as interview
+    ratings, exposed through the InterviewRated webhook event.
+- aid: spark-hire:spark-hire-interview-questions-api
+  name: Spark Hire Interview Questions API
+  tags:
+  - Questions
+  - Question Sets
+  - Assessment
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.sparkhire.com/
+  baseURL: https://api.sparkhire.com/v1.0
+  properties:
+  - url: https://docs.sparkhire.com/
+    type: APIReference
+  - url: openapi/spark-hire-openapi.yml
+    type: OpenAPI
+  - url: collections/spark-hire.postman_collection.json
+    type: PostmanCollection
+  - url: collections/spark-hire.opencollection.json
+    type: OpenCollection
+  description: Manage the questions a candidate answers within an interview, plus
+    reusable question sets. CRUD questions nested under an interview
+    (/interviews/:uuid/questions) and maintain shared question_sets that can be
+    applied across interviews to standardize screening and assessment.
+- aid: spark-hire:spark-hire-jobs-api
+  name: Spark Hire Jobs API
+  tags:
+  - Jobs
+  - Requisitions
+  - Recruiting
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.sparkhire.com/
+  baseURL: https://api.sparkhire.com/v1.0
+  properties:
+  - url: https://docs.sparkhire.com/
+    type: APIReference
+  - url: openapi/spark-hire-openapi.yml
+    type: OpenAPI
+  - url: collections/spark-hire.postman_collection.json
+    type: PostmanCollection
+  - url: collections/spark-hire.opencollection.json
+    type: OpenCollection
+  description: Create, list, retrieve, update, and delete jobs (requisitions) that
+    interviews are organized under. Jobs carry title, status, and metadata, and
+    emit JobCreated, JobUpdated, and JobDeleted webhook events for keeping an
+    external ATS in sync.
+- aid: spark-hire:spark-hire-users-api
+  name: Spark Hire Users API
+  tags:
+  - Users
+  - Evaluators
+  - Reviewers
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.sparkhire.com/
+  baseURL: https://api.sparkhire.com/v1.0
+  properties:
+  - url: https://docs.sparkhire.com/
+    type: APIReference
+  - url: openapi/spark-hire-openapi.yml
+    type: OpenAPI
+  - url: collections/spark-hire.postman_collection.json
+    type: PostmanCollection
+  - url: collections/spark-hire.opencollection.json
+    type: OpenCollection
+  description: Manage the company users who create interviews and evaluate
+    candidates - list, create, get, update, and delete users, and provision or
+    rotate each user's integration API key. API keys are scoped to a user and
+    respect that user's permission level. Includes /me for the authenticated user.
+- aid: spark-hire:spark-hire-webhooks-api
+  name: Spark Hire Webhooks API
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.sparkhire.com/
+  baseURL: https://api.sparkhire.com/v1.0
+  properties:
+  - url: https://docs.sparkhire.com/
+    type: APIReference
+  - url: openapi/spark-hire-openapi.yml
+    type: OpenAPI
+  - url: collections/spark-hire.postman_collection.json
+    type: PostmanCollection
+  - url: collections/spark-hire.opencollection.json
+    type: OpenCollection
+  description: Register, list, and delete webhook subscriptions so Spark Hire POSTs
+    changed objects to your server instead of you polling. Events include
+    InterviewCreated, InterviewAccepted, InterviewCompleted, InterviewDeleted,
+    InterviewExpired, InterviewRescheduled, InterviewReset, InterviewRated,
+    JobCreated, JobUpdated, and JobDeleted, with a replay endpoint for missed
+    deliveries.
+- aid: spark-hire:spark-hire-account-api
+  name: Spark Hire Account and Plan API
+  tags:
+  - Account
+  - Plan
+  - Companies
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.sparkhire.com/
+  baseURL: https://api.sparkhire.com/v1.0
+  properties:
+  - url: https://docs.sparkhire.com/
+    type: APIReference
+  - url: openapi/spark-hire-openapi.yml
+    type: OpenAPI
+  - url: collections/spark-hire.postman_collection.json
+    type: PostmanCollection
+  - url: collections/spark-hire.opencollection.json
+    type: OpenCollection
+  description: Read-oriented endpoints for account context - the authenticated user
+    (/me), the company plan and its limits (/plan), and company details
+    (/companies/:uuid) - used to discover entitlements and org structure before
+    creating jobs, users, and interviews.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/spark-hire
+- type: Website
+  url: https://www.sparkhire.com
+- type: Documentation
+  url: https://docs.sparkhire.com/
+- type: Plans
+  url: plans/spark-hire-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/spark-hire-rate-limits.yml
+- type: FinOps
+  url: finops/spark-hire-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

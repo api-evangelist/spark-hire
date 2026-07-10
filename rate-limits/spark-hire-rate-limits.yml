@@ -1,0 +1,53 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Spark Hire
+providerId: spark-hire
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Video Interviewing
+- Recruiting
+- HR Tech
+- Rate Limiting
+- Quotas
+description: >-
+  The Spark Hire API enforces a documented rate limit of 400 requests per
+  minute. Exceeding the limit returns HTTP 429 with an
+  X-Rate-Limit-Try-Again-Seconds header indicating how many seconds to wait
+  before retrying. Rate limiting is applied per API key (keys are scoped to an
+  individual user). To avoid polling and reduce request volume, Spark Hire
+  recommends webhooks - Spark Hire POSTs changed interview and job objects to a
+  URL you register instead of requiring you to poll list endpoints.
+notes: >-
+  The 400 requests/minute limit is documented at https://docs.sparkhire.com/.
+  Per-endpoint or per-account daily quotas are not separately published. Verify
+  current limits in the API reference; honor the X-Rate-Limit-Try-Again-Seconds
+  header on 429 responses.
+sources:
+- https://docs.sparkhire.com/
+responseCodes:
+  throttled: 429
+limits:
+- name: API Requests
+  scope: api-key
+  metric: requests
+  limit: 400 per minute
+  window: 60s
+  notes: Documented limit. A 429 response includes X-Rate-Limit-Try-Again-Seconds.
+- name: Per-Endpoint Quota
+  scope: api-key
+  metric: requests
+  limit: not separately published
+  notes: No separate per-endpoint or daily quota is documented beyond the 400/min limit.
+policies:
+- name: Retry-After Header
+  description: On a 429, the X-Rate-Limit-Try-Again-Seconds header gives the number of seconds to wait before retrying.
+- name: Prefer Webhooks Over Polling
+  description: Use webhook subscriptions (interview and job lifecycle events) instead of polling list endpoints to stay within the request limit.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor the try-again header on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,130 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Spark Hire
+providerId: spark-hire
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Video Interviewing
+- Recruiting
+- Hiring
+- HR Tech
+- Plans
+description: >-
+  Spark Hire sells its hiring platform on tiered subscription plans that scale
+  with company size and the products you bundle (Video Interviews, Behavioral
+  Assessment, and the Recruit ATS), rather than metering the API itself. As of
+  2026, Spark Hire uses product-based pricing billed annually; publicly cited
+  entry points include Video Interviews and Behavioral Assessment starting
+  around $249/month each, and Recruit ATS tiers commonly cited around
+  $299-$499/month and up for larger organizations, with Enterprise custom-priced.
+  These figures are drawn from third-party pricing aggregators and Spark Hire's
+  pricing page and should be reconciled with an official quote. The REST API is
+  an integration capability of a paid account (access enabled by Spark Hire), not
+  a separately metered product; there is no public per-call API price.
+notes: >-
+  Prices are not officially reconciled here and change over time. Spark Hire does
+  not publish a self-serve API price - API access is enabled on paid accounts by
+  Spark Hire. Confirm current product tiers, seat/company-size bands, and annual
+  discounts at https://www.sparkhire.com/pricing/ and via a sales quote.
+sources:
+- https://www.sparkhire.com/pricing/
+- https://docs.sparkhire.com/
+- https://www.capterra.com/p/125710/Spark-Hire/
+- https://www.g2.com/products/spark-hire/pricing
+plans:
+- id: spark-hire-video-interviews
+  name: Video Interviews
+  type: paid
+  description: >-
+    One-way and live video interviewing product. Publicly cited starting around
+    $249/month, billed annually, scaling with company size. Includes API-eligible
+    interview, question, and job objects when API access is enabled.
+  entries:
+  - label: Video Interviews Subscription
+    name: video_interviews
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from ~$249/month billed annually (verify)
+    userMultiplied: false
+  elements:
+  - name: One-Way Interviews
+  - name: Live Interviews
+  - name: Question Sets
+  - name: API Access (when enabled)
+  - name: Webhooks
+- id: spark-hire-behavioral-assessment
+  name: Behavioral Assessment
+  type: paid
+  description: >-
+    Talent/behavioral assessment product. Publicly cited starting around
+    $249/month, billed annually, scaling with company size. Often bundled with
+    Video Interviews.
+  entries:
+  - label: Behavioral Assessment Subscription
+    name: behavioral_assessment
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from ~$249/month billed annually (verify)
+    userMultiplied: false
+  elements:
+  - name: Assessments
+  - name: Candidate Scoring
+- id: spark-hire-recruit-ats
+  name: Recruit (ATS)
+  type: paid
+  description: >-
+    Applicant tracking system tiers scaling with company size. Publicly cited
+    bands commonly around $299/month (e.g. Pro) and $499/month (e.g. Growth),
+    billed annually, with lower and higher bands by employee count.
+  entries:
+  - label: Recruit ATS Subscription
+    name: recruit_ats
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~$299-$499/month and up, billed annually, by company size (verify)
+    userMultiplied: false
+  elements:
+  - name: Applicant Tracking
+  - name: Jobs and Requisitions
+  - name: Integrations
+  - name: API Access (when enabled)
+- id: spark-hire-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom-priced plan for larger organizations (commonly cited as 500+
+    employees) covering higher volumes, bundled products, security review, and
+    negotiated terms. Contact Spark Hire sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Bundled Products
+  - name: Priority Support and SLAs
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

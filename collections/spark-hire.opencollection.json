@@ -1,0 +1,275 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spark Hire API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{apiKey}}",
+      "password": ""
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Account", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get the authenticated user.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/me" },
+          "docs": "Returns the user associated with the API key used for the request."
+        },
+        {
+          "info": { "name": "Get the company plan.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/plan" },
+          "docs": "Returns the current company's plan details and limits."
+        },
+        {
+          "info": { "name": "Get a company.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sparkhire.com/v1.0/companies/:uuid",
+            "params": [{ "name": "uuid", "value": "", "type": "path", "description": "The company UUID." }]
+          },
+          "docs": "Returns a company by UUID."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Users", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List users.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/users" },
+          "docs": "Lists company users (evaluators)."
+        },
+        {
+          "info": { "name": "Create a user.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.sparkhire.com/v1.0/users", "body": { "type": "json", "data": "{}" } },
+          "docs": "Creates a company user."
+        },
+        {
+          "info": { "name": "Get a user.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/users/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Retrieves a user by UUID."
+        },
+        {
+          "info": { "name": "Update a user.", "type": "http" },
+          "http": { "method": "PUT", "url": "https://api.sparkhire.com/v1.0/users/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }], "body": { "type": "json", "data": "{}" } },
+          "docs": "Updates a user."
+        },
+        {
+          "info": { "name": "Delete a user.", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://api.sparkhire.com/v1.0/users/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Deletes a user."
+        },
+        {
+          "info": { "name": "Get a user's integration key.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/users/:uuid/integration_key", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Returns the user's integration API key."
+        },
+        {
+          "info": { "name": "Create a user's integration key.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.sparkhire.com/v1.0/users/:uuid/integration_key", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Provisions an integration API key for the user."
+        },
+        {
+          "info": { "name": "Rotate a user's integration key.", "type": "http" },
+          "http": { "method": "PUT", "url": "https://api.sparkhire.com/v1.0/users/:uuid/integration_key", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Rotates the user's integration API key."
+        },
+        {
+          "info": { "name": "Revoke a user's integration key.", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://api.sparkhire.com/v1.0/users/:uuid/integration_key", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Revokes the user's integration API key."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Jobs", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List jobs.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/jobs" },
+          "docs": "Lists jobs (requisitions)."
+        },
+        {
+          "info": { "name": "Create a job.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.sparkhire.com/v1.0/jobs", "body": { "type": "json", "data": "{}" } },
+          "docs": "Creates a job."
+        },
+        {
+          "info": { "name": "Get a job.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/jobs/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Retrieves a job by UUID."
+        },
+        {
+          "info": { "name": "Update a job.", "type": "http" },
+          "http": { "method": "PUT", "url": "https://api.sparkhire.com/v1.0/jobs/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }], "body": { "type": "json", "data": "{}" } },
+          "docs": "Updates a job."
+        },
+        {
+          "info": { "name": "Delete a job.", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://api.sparkhire.com/v1.0/jobs/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Deletes a job."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Interviews", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List interviews.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/interviews" },
+          "docs": "Lists interviews. Supports range, orderby, status[] and type[] filters."
+        },
+        {
+          "info": { "name": "Create an interview.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.sparkhire.com/v1.0/interviews", "body": { "type": "json", "data": "{}" } },
+          "docs": "Creates a one-way or live interview. Triggers InterviewCreated."
+        },
+        {
+          "info": { "name": "Get an interview.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/interviews/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Retrieves an interview by UUID."
+        },
+        {
+          "info": { "name": "Update an interview.", "type": "http" },
+          "http": { "method": "PUT", "url": "https://api.sparkhire.com/v1.0/interviews/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }], "body": { "type": "json", "data": "{}" } },
+          "docs": "Updates an interview."
+        },
+        {
+          "info": { "name": "Delete an interview.", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://api.sparkhire.com/v1.0/interviews/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Deletes an interview."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Interview Questions", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List questions for an interview.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/questions", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Lists questions within an interview."
+        },
+        {
+          "info": { "name": "Add a question to an interview.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/questions", "params": [{ "name": "uuid", "value": "", "type": "path" }], "body": { "type": "json", "data": "{}" } },
+          "docs": "Adds a question to an interview."
+        },
+        {
+          "info": { "name": "Get a question.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/questions/:question_uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }, { "name": "question_uuid", "value": "", "type": "path" }] },
+          "docs": "Retrieves a question."
+        },
+        {
+          "info": { "name": "Update a question.", "type": "http" },
+          "http": { "method": "PUT", "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/questions/:question_uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }, { "name": "question_uuid", "value": "", "type": "path" }], "body": { "type": "json", "data": "{}" } },
+          "docs": "Updates a question."
+        },
+        {
+          "info": { "name": "Delete a question.", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/questions/:question_uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }, { "name": "question_uuid", "value": "", "type": "path" }] },
+          "docs": "Deletes a question."
+        },
+        {
+          "info": { "name": "List question sets.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/question_sets" },
+          "docs": "Lists reusable question sets."
+        },
+        {
+          "info": { "name": "Create a question set.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.sparkhire.com/v1.0/question_sets", "body": { "type": "json", "data": "{}" } },
+          "docs": "Creates a question set."
+        },
+        {
+          "info": { "name": "Get a question set.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/question_sets/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Retrieves a question set."
+        },
+        {
+          "info": { "name": "Update a question set.", "type": "http" },
+          "http": { "method": "PUT", "url": "https://api.sparkhire.com/v1.0/question_sets/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }], "body": { "type": "json", "data": "{}" } },
+          "docs": "Updates a question set."
+        },
+        {
+          "info": { "name": "Delete a question set.", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://api.sparkhire.com/v1.0/question_sets/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Deletes a question set."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Share Links", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get basic share link.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/share_link", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Returns the basic share link for an interview."
+        },
+        {
+          "info": { "name": "Create basic share link.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/share_link", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Creates a basic share link for an interview."
+        },
+        {
+          "info": { "name": "Update basic share link.", "type": "http" },
+          "http": { "method": "PUT", "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/share_link/:link_uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }, { "name": "link_uuid", "value": "", "type": "path" }], "body": { "type": "json", "data": "{}" } },
+          "docs": "Updates a basic share link."
+        },
+        {
+          "info": { "name": "List advanced share links.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/share_links" },
+          "docs": "Lists advanced share links."
+        },
+        {
+          "info": { "name": "Create advanced share link.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.sparkhire.com/v1.0/share_links", "body": { "type": "json", "data": "{}" } },
+          "docs": "Creates an advanced share link."
+        },
+        {
+          "info": { "name": "Get advanced share link.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/share_links/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Retrieves an advanced share link."
+        },
+        {
+          "info": { "name": "Update advanced share link.", "type": "http" },
+          "http": { "method": "PUT", "url": "https://api.sparkhire.com/v1.0/share_links/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }], "body": { "type": "json", "data": "{}" } },
+          "docs": "Updates an advanced share link."
+        },
+        {
+          "info": { "name": "Delete advanced share link.", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://api.sparkhire.com/v1.0/share_links/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Deletes an advanced share link."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Webhooks", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List webhooks.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/webhooks" },
+          "docs": "Lists webhook subscriptions."
+        },
+        {
+          "info": { "name": "Create a webhook.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.sparkhire.com/v1.0/webhooks", "body": { "type": "json", "data": "{}" } },
+          "docs": "Registers a URL that Spark Hire POSTs changed objects to on a subscribed event."
+        },
+        {
+          "info": { "name": "Delete a webhook.", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://api.sparkhire.com/v1.0/webhooks/:uuid", "params": [{ "name": "uuid", "value": "", "type": "path" }] },
+          "docs": "Deletes a webhook subscription."
+        },
+        {
+          "info": { "name": "Replay a webhook event.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.sparkhire.com/v1.0/webhooks/replay/:event", "params": [{ "name": "event", "value": "InterviewCompleted", "type": "path" }] },
+          "docs": "Redelivers the most recent payload for the given event type."
+        }
+      ]
+    }
+  ]
+}

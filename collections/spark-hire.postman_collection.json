@@ -1,0 +1,429 @@
+{
+  "info": {
+    "name": "Spark Hire API",
+    "description": "Video interviewing and talent assessment API. Manage jobs, one-way and live video interviews, interview questions and question sets, company users (evaluators) and their integration keys, candidate share links, and webhook subscriptions. Base URL: https://api.sparkhire.com/v1.0. Authentication is HTTP Basic - the username is your API key and the password is ignored. API access must be enabled on your account by Spark Hire. Rate limit is 400 requests per minute. Endpoints transcribed from the public reference at https://docs.sparkhire.com/.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "basic",
+    "basic": [
+      { "key": "username", "value": "{{apiKey}}", "type": "string" },
+      { "key": "password", "value": "", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.sparkhire.com/v1.0", "type": "string" },
+    { "key": "apiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Account",
+      "item": [
+        {
+          "name": "Get the authenticated user",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/me", "host": ["{{baseUrl}}"], "path": ["me"] },
+            "description": "Returns the user associated with the API key used for the request."
+          }
+        },
+        {
+          "name": "Get the company plan",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/plan", "host": ["{{baseUrl}}"], "path": ["plan"] },
+            "description": "Returns the current company's plan details and limits."
+          }
+        },
+        {
+          "name": "Get a company",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/companies/:uuid", "host": ["{{baseUrl}}"], "path": ["companies", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] },
+            "description": "Returns a company by UUID."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "List users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/users", "host": ["{{baseUrl}}"], "path": ["users"] },
+            "description": "Lists company users."
+          }
+        },
+        {
+          "name": "Create a user",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"first_name\": \"Ada\",\n  \"last_name\": \"Lovelace\",\n  \"email\": \"ada@example.com\",\n  \"permission_level\": \"reviewer\"\n}" },
+            "url": { "raw": "{{baseUrl}}/users", "host": ["{{baseUrl}}"], "path": ["users"] },
+            "description": "Creates a company user (evaluator)."
+          }
+        },
+        {
+          "name": "Get a user",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/users/:uuid", "host": ["{{baseUrl}}"], "path": ["users", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Update a user",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"permission_level\": \"admin\"\n}" },
+            "url": { "raw": "{{baseUrl}}/users/:uuid", "host": ["{{baseUrl}}"], "path": ["users", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Delete a user",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/users/:uuid", "host": ["{{baseUrl}}"], "path": ["users", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Get a user's integration key",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/users/:uuid/integration_key", "host": ["{{baseUrl}}"], "path": ["users", ":uuid", "integration_key"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Create a user's integration key",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/users/:uuid/integration_key", "host": ["{{baseUrl}}"], "path": ["users", ":uuid", "integration_key"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Rotate a user's integration key",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/users/:uuid/integration_key", "host": ["{{baseUrl}}"], "path": ["users", ":uuid", "integration_key"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Revoke a user's integration key",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/users/:uuid/integration_key", "host": ["{{baseUrl}}"], "path": ["users", ":uuid", "integration_key"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Jobs",
+      "item": [
+        {
+          "name": "List jobs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/jobs", "host": ["{{baseUrl}}"], "path": ["jobs"] },
+            "description": "Lists jobs (requisitions)."
+          }
+        },
+        {
+          "name": "Create a job",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"title\": \"Senior Engineer\",\n  \"status\": \"open\"\n}" },
+            "url": { "raw": "{{baseUrl}}/jobs", "host": ["{{baseUrl}}"], "path": ["jobs"] }
+          }
+        },
+        {
+          "name": "Get a job",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/jobs/:uuid", "host": ["{{baseUrl}}"], "path": ["jobs", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Update a job",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"status\": \"closed\"\n}" },
+            "url": { "raw": "{{baseUrl}}/jobs/:uuid", "host": ["{{baseUrl}}"], "path": ["jobs", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Delete a job",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/jobs/:uuid", "host": ["{{baseUrl}}"], "path": ["jobs", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Interviews",
+      "item": [
+        {
+          "name": "List interviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/interviews", "host": ["{{baseUrl}}"], "path": ["interviews"] },
+            "description": "Lists interviews. Supports range, orderby, status[] and type[] filters."
+          }
+        },
+        {
+          "name": "Create an interview",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"job_uuid\": \"\",\n  \"type\": \"one_way\",\n  \"candidate_first_name\": \"Grace\",\n  \"candidate_last_name\": \"Hopper\",\n  \"candidate_email\": \"grace@example.com\"\n}" },
+            "url": { "raw": "{{baseUrl}}/interviews", "host": ["{{baseUrl}}"], "path": ["interviews"] },
+            "description": "Creates a one-way or live interview. Triggers InterviewCreated."
+          }
+        },
+        {
+          "name": "Get an interview",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/interviews/:uuid", "host": ["{{baseUrl}}"], "path": ["interviews", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Update an interview",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"type\": \"live\"\n}" },
+            "url": { "raw": "{{baseUrl}}/interviews/:uuid", "host": ["{{baseUrl}}"], "path": ["interviews", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Delete an interview",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/interviews/:uuid", "host": ["{{baseUrl}}"], "path": ["interviews", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Interview Questions",
+      "item": [
+        {
+          "name": "List questions for an interview",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/interviews/:uuid/questions", "host": ["{{baseUrl}}"], "path": ["interviews", ":uuid", "questions"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Add a question to an interview",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"text\": \"Tell us about yourself.\",\n  \"type\": \"video\",\n  \"think_time\": 30,\n  \"response_time\": 120\n}" },
+            "url": { "raw": "{{baseUrl}}/interviews/:uuid/questions", "host": ["{{baseUrl}}"], "path": ["interviews", ":uuid", "questions"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Get a question",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/interviews/:uuid/questions/:question_uuid", "host": ["{{baseUrl}}"], "path": ["interviews", ":uuid", "questions", ":question_uuid"], "variable": [{ "key": "uuid", "value": "" }, { "key": "question_uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Update a question",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"response_time\": 180\n}" },
+            "url": { "raw": "{{baseUrl}}/interviews/:uuid/questions/:question_uuid", "host": ["{{baseUrl}}"], "path": ["interviews", ":uuid", "questions", ":question_uuid"], "variable": [{ "key": "uuid", "value": "" }, { "key": "question_uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Delete a question",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/interviews/:uuid/questions/:question_uuid", "host": ["{{baseUrl}}"], "path": ["interviews", ":uuid", "questions", ":question_uuid"], "variable": [{ "key": "uuid", "value": "" }, { "key": "question_uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "List question sets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/question_sets", "host": ["{{baseUrl}}"], "path": ["question_sets"] }
+          }
+        },
+        {
+          "name": "Create a question set",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"title\": \"Standard Screen\",\n  \"questions\": []\n}" },
+            "url": { "raw": "{{baseUrl}}/question_sets", "host": ["{{baseUrl}}"], "path": ["question_sets"] }
+          }
+        },
+        {
+          "name": "Get a question set",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/question_sets/:uuid", "host": ["{{baseUrl}}"], "path": ["question_sets", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Update a question set",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"title\": \"Standard Screen v2\"\n}" },
+            "url": { "raw": "{{baseUrl}}/question_sets/:uuid", "host": ["{{baseUrl}}"], "path": ["question_sets", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Delete a question set",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/question_sets/:uuid", "host": ["{{baseUrl}}"], "path": ["question_sets", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Share Links",
+      "item": [
+        {
+          "name": "Get basic share link",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/interviews/:uuid/share_link", "host": ["{{baseUrl}}"], "path": ["interviews", ":uuid", "share_link"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Create basic share link",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/interviews/:uuid/share_link", "host": ["{{baseUrl}}"], "path": ["interviews", ":uuid", "share_link"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Update basic share link",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"password_protected\": true\n}" },
+            "url": { "raw": "{{baseUrl}}/interviews/:uuid/share_link/:link_uuid", "host": ["{{baseUrl}}"], "path": ["interviews", ":uuid", "share_link", ":link_uuid"], "variable": [{ "key": "uuid", "value": "" }, { "key": "link_uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "List advanced share links",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/share_links", "host": ["{{baseUrl}}"], "path": ["share_links"] }
+          }
+        },
+        {
+          "name": "Create advanced share link",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"interview_uuid\": \"\",\n  \"password_protected\": false,\n  \"allow_ratings\": true\n}" },
+            "url": { "raw": "{{baseUrl}}/share_links", "host": ["{{baseUrl}}"], "path": ["share_links"] }
+          }
+        },
+        {
+          "name": "Get advanced share link",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/share_links/:uuid", "host": ["{{baseUrl}}"], "path": ["share_links", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Update advanced share link",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"allow_ratings\": false\n}" },
+            "url": { "raw": "{{baseUrl}}/share_links/:uuid", "host": ["{{baseUrl}}"], "path": ["share_links", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Delete advanced share link",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/share_links/:uuid", "host": ["{{baseUrl}}"], "path": ["share_links", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "List webhooks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/webhooks", "host": ["{{baseUrl}}"], "path": ["webhooks"] }
+          }
+        },
+        {
+          "name": "Create a webhook",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"url\": \"https://example.com/hooks/spark-hire\",\n  \"event\": \"InterviewCompleted\"\n}" },
+            "url": { "raw": "{{baseUrl}}/webhooks", "host": ["{{baseUrl}}"], "path": ["webhooks"] }
+          }
+        },
+        {
+          "name": "Delete a webhook",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/webhooks/:uuid", "host": ["{{baseUrl}}"], "path": ["webhooks", ":uuid"], "variable": [{ "key": "uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Replay a webhook event",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/webhooks/replay/:event", "host": ["{{baseUrl}}"], "path": ["webhooks", "replay", ":event"], "variable": [{ "key": "event", "value": "InterviewCompleted" }] }
+          }
+        }
+      ]
+    }
+  ]
+}

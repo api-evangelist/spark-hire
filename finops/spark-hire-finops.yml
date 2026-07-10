@@ -1,0 +1,92 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Spark Hire
+providerId: spark-hire
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Video Interviewing
+- Recruiting
+- HR Tech
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Spark Hire spend. Spark Hire is billed as a SaaS subscription
+  scaled by company size and the products you bundle (Video Interviews,
+  Behavioral Assessment, Recruit ATS), typically on annual terms, with an
+  Enterprise tier for larger organizations. The REST API is an integration
+  capability of a paid account rather than a separately metered, usage-billed
+  product - there is no public per-call API charge - so API cost is effectively a
+  fixed component of the subscription. The dominant cost drivers are the chosen
+  product bundle and company-size band, not API call volume.
+notes: >-
+  Per-unit and per-tier rates are not officially reconciled here; verify with a
+  Spark Hire quote and https://www.sparkhire.com/pricing/. Because billing is
+  subscription-based, FinOps attention should focus on right-sizing the product
+  bundle and seat/company-size band and on consolidating hiring tooling, rather
+  than on metering API usage.
+sources:
+- https://www.sparkhire.com/pricing/
+- https://docs.sparkhire.com/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Spark Hire
+serviceCategory: Human Resources and Recruiting Software
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Spark Hire
+  ServiceCategory: Human Resources and Recruiting Software
+  ProviderName: Spark Hire
+  PublisherName: Spark Hire
+  InvoiceIssuerName: Spark Hire
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: product_subscription
+  description: Fixed subscription per bundled product (Video Interviews, Behavioral Assessment, Recruit ATS), scaled by company-size band.
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - product
+  - company_size_band
+- name: api_requests
+  description: API requests against the 400/minute rate limit. Not separately billed; tracked for operational cost/scaling only.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - api_key
+- name: interviews
+  description: Interviews created, as an operational usage signal (not a separate line item).
+  unit: interviews
+  aggregation: sum
+  dimensions:
+  - job
+  - user
+principles:
+- name: Visibility
+  description: Track which products (Video Interviews, Assessment, Recruit ATS) and company-size band drive the subscription, and monitor interview volume against plan expectations.
+- name: Allocation
+  description: Map the Spark Hire subscription to the hiring/recruiting cost center; attribute seats and jobs to teams.
+- name: Optimization
+  description: Right-size the product bundle and company-size band; use webhooks instead of polling to stay within the API rate limit and avoid over-engineering integrations.
+- name: Accountability
+  description: Assign an owner for the Spark Hire contract; review the bundle and band at annual renewal against actual hiring volume.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
