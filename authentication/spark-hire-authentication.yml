@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/spark-hire-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication. The username is your Spark Hire API key; the password
+    is ignored. Keys are scoped to a user and respect that user's permission level.
+  sources:
+  - openapi/spark-hire-openapi.yml

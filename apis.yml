@@ -162,6 +162,10 @@ apis:
     (/companies/:uuid) - used to discover entitlements and org structure before
     creating jobs, users, and interviews.
 common:
+- type: DomainSecurity
+  url: security/spark-hire-domain-security.yml
+- type: Authentication
+  url: authentication/spark-hire-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/spark-hire
 - type: Website
