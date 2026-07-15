@@ -162,6 +162,8 @@ apis:
     (/companies/:uuid) - used to discover entitlements and org structure before
     creating jobs, users, and interviews.
 common:
+- type: AgenticAccess
+  url: agentic-access/spark-hire-agentic-access.yml
 - type: DomainSecurity
   url: security/spark-hire-domain-security.yml
 - type: Authentication
