@@ -1,0 +1,278 @@
+openapi: 3.0.3
+info:
+  title: Spark Hire Account Interview Questions API
+  description: 'The Spark Hire API embeds video interviewing and talent assessment into an applicant tracking system or custom hiring application. It is a RESTful API with JSON responses served under https://api.sparkhire.com/v1.0. It manages jobs, one-way and live video interviews, interview questions and reusable question sets, company users (evaluators) and their integration API keys, candidate share links, and webhook subscriptions for interview and job lifecycle events.
+
+
+    Authentication uses HTTP Basic: the username is your API key and the password is ignored. API keys are tied to an individual user and respect that user''s permission level. API access is not self-serve - it must be enabled on your account by Spark Hire - but the API reference is fully public. Timestamps are RFC3339. Rate limit is 400 requests per minute; exceeding it returns 429 with an X-Rate-Limit-Try-Again-Seconds header.
+
+
+    Endpoint paths and behavior below are transcribed from the public Spark Hire API reference at https://docs.sparkhire.com/. Request and response schemas are honestly modeled from the documented resources; exercising them live requires API access enabled by Spark Hire.'
+  version: '1.0'
+  contact:
+    name: Spark Hire
+    url: https://www.sparkhire.com
+servers:
+- url: https://api.sparkhire.com/v1.0
+  description: Spark Hire API
+security:
+- basicAuth: []
+tags:
+- name: Interview Questions
+  description: Questions within an interview and reusable question sets.
+paths:
+  /interviews/{uuid}/questions:
+    parameters:
+    - $ref: '#/components/parameters/Uuid'
+    get:
+      operationId: listInterviewQuestions
+      tags:
+      - Interview Questions
+      summary: List questions for an interview
+      responses:
+        '200':
+          description: A list of questions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Question'
+    post:
+      operationId: createInterviewQuestion
+      tags:
+      - Interview Questions
+      summary: Add a question to an interview
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionInput'
+      responses:
+        '201':
+          description: The created question.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Question'
+  /interviews/{uuid}/questions/{questionUuid}:
+    parameters:
+    - $ref: '#/components/parameters/Uuid'
+    - name: questionUuid
+      in: path
+      required: true
+      description: The UUID of the question.
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: getInterviewQuestion
+      tags:
+      - Interview Questions
+      summary: Get a question
+      responses:
+        '200':
+          description: A question.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Question'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateInterviewQuestion
+      tags:
+      - Interview Questions
+      summary: Update a question
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionInput'
+      responses:
+        '200':
+          description: The updated question.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Question'
+    delete:
+      operationId: deleteInterviewQuestion
+      tags:
+      - Interview Questions
+      summary: Delete a question
+      responses:
+        '204':
+          description: The question was deleted.
+  /question_sets:
+    get:
+      operationId: listQuestionSets
+      tags:
+      - Interview Questions
+      summary: List question sets
+      parameters:
+      - $ref: '#/components/parameters/Range'
+      - $ref: '#/components/parameters/OrderBy'
+      responses:
+        '200':
+          description: A list of question sets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QuestionSet'
+    post:
+      operationId: createQuestionSet
+      tags:
+      - Interview Questions
+      summary: Create a question set
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionSetInput'
+      responses:
+        '201':
+          description: The created question set.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionSet'
+  /question_sets/{uuid}:
+    parameters:
+    - $ref: '#/components/parameters/Uuid'
+    get:
+      operationId: getQuestionSet
+      tags:
+      - Interview Questions
+      summary: Get a question set
+      responses:
+        '200':
+          description: A question set.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionSet'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateQuestionSet
+      tags:
+      - Interview Questions
+      summary: Update a question set
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionSetInput'
+      responses:
+        '200':
+          description: The updated question set.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionSet'
+    delete:
+      operationId: deleteQuestionSet
+      tags:
+      - Interview Questions
+      summary: Delete a question set
+      responses:
+        '204':
+          description: The question set was deleted.
+components:
+  parameters:
+    Uuid:
+      name: uuid
+      in: path
+      required: true
+      description: The UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+    Range:
+      name: range
+      in: query
+      required: false
+      description: Pagination range, e.g. 1-20 or 10-30.
+      schema:
+        type: string
+        example: 1-20
+    OrderBy:
+      name: orderby
+      in: query
+      required: false
+      description: Sort order, e.g. title_asc or updated_desc.
+      schema:
+        type: string
+        example: updated_desc
+  schemas:
+    Question:
+      allOf:
+      - $ref: '#/components/schemas/QuestionInput'
+      - type: object
+        properties:
+          uuid:
+            type: string
+            format: uuid
+    QuestionInput:
+      type: object
+      properties:
+        text:
+          type: string
+          description: The question prompt shown to the candidate.
+        type:
+          type: string
+          description: Answer format, e.g. video, text, or multiple_choice.
+        think_time:
+          type: integer
+          description: Seconds the candidate has to prepare.
+        response_time:
+          type: integer
+          description: Seconds allotted for the candidate's response.
+        order:
+          type: integer
+    QuestionSetInput:
+      type: object
+      properties:
+        title:
+          type: string
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionInput'
+    QuestionSet:
+      allOf:
+      - $ref: '#/components/schemas/QuestionSetInput'
+      - type: object
+        properties:
+          uuid:
+            type: string
+            format: uuid
+          created_at:
+            type: string
+            format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+  responses:
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. The username is your Spark Hire API key; the password is ignored. Keys are scoped to a user and respect that user's permission level.

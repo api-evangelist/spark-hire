@@ -1,0 +1,174 @@
+openapi: 3.0.3
+info:
+  title: Spark Hire Account API
+  description: 'The Spark Hire API embeds video interviewing and talent assessment into an applicant tracking system or custom hiring application. It is a RESTful API with JSON responses served under https://api.sparkhire.com/v1.0. It manages jobs, one-way and live video interviews, interview questions and reusable question sets, company users (evaluators) and their integration API keys, candidate share links, and webhook subscriptions for interview and job lifecycle events.
+
+
+    Authentication uses HTTP Basic: the username is your API key and the password is ignored. API keys are tied to an individual user and respect that user''s permission level. API access is not self-serve - it must be enabled on your account by Spark Hire - but the API reference is fully public. Timestamps are RFC3339. Rate limit is 400 requests per minute; exceeding it returns 429 with an X-Rate-Limit-Try-Again-Seconds header.
+
+
+    Endpoint paths and behavior below are transcribed from the public Spark Hire API reference at https://docs.sparkhire.com/. Request and response schemas are honestly modeled from the documented resources; exercising them live requires API access enabled by Spark Hire.'
+  version: '1.0'
+  contact:
+    name: Spark Hire
+    url: https://www.sparkhire.com
+servers:
+- url: https://api.sparkhire.com/v1.0
+  description: Spark Hire API
+security:
+- basicAuth: []
+tags:
+- name: Account
+  description: Authenticated user, plan, and company context.
+paths:
+  /me:
+    get:
+      operationId: getMe
+      tags:
+      - Account
+      summary: Get the authenticated user
+      description: Returns the user associated with the API key used for the request.
+      responses:
+        '200':
+          description: The authenticated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /plan:
+    get:
+      operationId: getPlan
+      tags:
+      - Account
+      summary: Get the company plan
+      description: Returns the current company's plan details and limits.
+      responses:
+        '200':
+          description: The company plan.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plan'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /companies/{uuid}:
+    get:
+      operationId: getCompany
+      tags:
+      - Account
+      summary: Get a company
+      parameters:
+      - $ref: '#/components/parameters/Uuid'
+      responses:
+        '200':
+          description: A company.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    User:
+      allOf:
+      - $ref: '#/components/schemas/UserInput'
+      - type: object
+        properties:
+          uuid:
+            type: string
+            format: uuid
+          created_at:
+            type: string
+            format: date-time
+          updated_at:
+            type: string
+            format: date-time
+    Plan:
+      type: object
+      properties:
+        name:
+          type: string
+        active_jobs_limit:
+          type: integer
+        users_limit:
+          type: integer
+        products:
+          type: array
+          items:
+            type: string
+    UserInput:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        permission_level:
+          type: string
+          description: The user's role/permission level within the company.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    Company:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+  responses:
+    RateLimited:
+      description: Rate limit exceeded (400 requests per minute). Retry after the number of seconds in the X-Rate-Limit-Try-Again-Seconds header.
+      headers:
+        X-Rate-Limit-Try-Again-Seconds:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Uuid:
+      name: uuid
+      in: path
+      required: true
+      description: The UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. The username is your Spark Hire API key; the password is ignored. Keys are scoped to a user and respect that user's permission level.

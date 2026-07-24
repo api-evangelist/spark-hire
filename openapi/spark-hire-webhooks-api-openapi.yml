@@ -1,0 +1,154 @@
+openapi: 3.0.3
+info:
+  title: Spark Hire Account Webhooks API
+  description: 'The Spark Hire API embeds video interviewing and talent assessment into an applicant tracking system or custom hiring application. It is a RESTful API with JSON responses served under https://api.sparkhire.com/v1.0. It manages jobs, one-way and live video interviews, interview questions and reusable question sets, company users (evaluators) and their integration API keys, candidate share links, and webhook subscriptions for interview and job lifecycle events.
+
+
+    Authentication uses HTTP Basic: the username is your API key and the password is ignored. API keys are tied to an individual user and respect that user''s permission level. API access is not self-serve - it must be enabled on your account by Spark Hire - but the API reference is fully public. Timestamps are RFC3339. Rate limit is 400 requests per minute; exceeding it returns 429 with an X-Rate-Limit-Try-Again-Seconds header.
+
+
+    Endpoint paths and behavior below are transcribed from the public Spark Hire API reference at https://docs.sparkhire.com/. Request and response schemas are honestly modeled from the documented resources; exercising them live requires API access enabled by Spark Hire.'
+  version: '1.0'
+  contact:
+    name: Spark Hire
+    url: https://www.sparkhire.com
+servers:
+- url: https://api.sparkhire.com/v1.0
+  description: Spark Hire API
+security:
+- basicAuth: []
+tags:
+- name: Webhooks
+  description: Event subscriptions for interview and job lifecycle changes.
+paths:
+  /webhooks:
+    get:
+      operationId: listWebhooks
+      tags:
+      - Webhooks
+      summary: List webhooks
+      responses:
+        '200':
+          description: A list of webhook subscriptions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+    post:
+      operationId: createWebhook
+      tags:
+      - Webhooks
+      summary: Create a webhook
+      description: Registers a URL that Spark Hire POSTs changed objects to when a subscribed event occurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+      responses:
+        '201':
+          description: The created webhook subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+  /webhooks/{uuid}:
+    parameters:
+    - $ref: '#/components/parameters/Uuid'
+    delete:
+      operationId: deleteWebhook
+      tags:
+      - Webhooks
+      summary: Delete a webhook
+      responses:
+        '204':
+          description: The webhook subscription was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /webhooks/replay/{event}:
+    parameters:
+    - name: event
+      in: path
+      required: true
+      description: The event type to replay (e.g. InterviewCompleted).
+      schema:
+        $ref: '#/components/schemas/WebhookEventType'
+    get:
+      operationId: replayWebhook
+      tags:
+      - Webhooks
+      summary: Replay a webhook event
+      description: Redelivers the most recent payload for the given event type.
+      responses:
+        '200':
+          description: The event was queued for replay.
+components:
+  parameters:
+    Uuid:
+      name: uuid
+      in: path
+      required: true
+      description: The UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+  responses:
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Webhook:
+      allOf:
+      - $ref: '#/components/schemas/WebhookInput'
+      - type: object
+        properties:
+          uuid:
+            type: string
+            format: uuid
+          created_at:
+            type: string
+            format: date-time
+    WebhookEventType:
+      type: string
+      enum:
+      - InterviewCreated
+      - InterviewAccepted
+      - InterviewCompleted
+      - InterviewDeleted
+      - InterviewExpired
+      - InterviewRescheduled
+      - InterviewReset
+      - InterviewRated
+      - JobCreated
+      - JobUpdated
+      - JobDeleted
+    WebhookInput:
+      type: object
+      required:
+      - url
+      - event
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The endpoint Spark Hire POSTs the changed object to.
+        event:
+          $ref: '#/components/schemas/WebhookEventType'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. The username is your Spark Hire API key; the password is ignored. Keys are scoped to a user and respect that user's permission level.
