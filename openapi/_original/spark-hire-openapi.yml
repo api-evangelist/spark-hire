@@ -1,0 +1,1077 @@
+openapi: 3.0.3
+info:
+  title: Spark Hire API
+  description: >-
+    The Spark Hire API embeds video interviewing and talent assessment into an
+    applicant tracking system or custom hiring application. It is a RESTful API
+    with JSON responses served under https://api.sparkhire.com/v1.0. It manages
+    jobs, one-way and live video interviews, interview questions and reusable
+    question sets, company users (evaluators) and their integration API keys,
+    candidate share links, and webhook subscriptions for interview and job
+    lifecycle events.
+
+
+    Authentication uses HTTP Basic: the username is your API key and the password
+    is ignored. API keys are tied to an individual user and respect that user's
+    permission level. API access is not self-serve - it must be enabled on your
+    account by Spark Hire - but the API reference is fully public. Timestamps are
+    RFC3339. Rate limit is 400 requests per minute; exceeding it returns 429 with
+    an X-Rate-Limit-Try-Again-Seconds header.
+
+
+    Endpoint paths and behavior below are transcribed from the public Spark Hire
+    API reference at https://docs.sparkhire.com/. Request and response schemas are
+    honestly modeled from the documented resources; exercising them live requires
+    API access enabled by Spark Hire.
+  version: '1.0'
+  contact:
+    name: Spark Hire
+    url: https://www.sparkhire.com
+servers:
+  - url: https://api.sparkhire.com/v1.0
+    description: Spark Hire API
+security:
+  - basicAuth: []
+tags:
+  - name: Account
+    description: Authenticated user, plan, and company context.
+  - name: Users
+    description: Company users (evaluators) and their integration API keys.
+  - name: Jobs
+    description: Jobs (requisitions) that interviews are organized under.
+  - name: Interviews
+    description: One-way and live video interviews.
+  - name: Interview Questions
+    description: Questions within an interview and reusable question sets.
+  - name: Share Links
+    description: Basic and advanced share links for reviewing interviews.
+  - name: Webhooks
+    description: Event subscriptions for interview and job lifecycle changes.
+paths:
+  /me:
+    get:
+      operationId: getMe
+      tags: [Account]
+      summary: Get the authenticated user
+      description: Returns the user associated with the API key used for the request.
+      responses:
+        '200':
+          description: The authenticated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /plan:
+    get:
+      operationId: getPlan
+      tags: [Account]
+      summary: Get the company plan
+      description: Returns the current company's plan details and limits.
+      responses:
+        '200':
+          description: The company plan.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plan'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /companies/{uuid}:
+    get:
+      operationId: getCompany
+      tags: [Account]
+      summary: Get a company
+      parameters:
+        - $ref: '#/components/parameters/Uuid'
+      responses:
+        '200':
+          description: A company.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users:
+    get:
+      operationId: listUsers
+      tags: [Users]
+      summary: List users
+      parameters:
+        - $ref: '#/components/parameters/Range'
+        - $ref: '#/components/parameters/OrderBy'
+      responses:
+        '200':
+          description: A list of users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createUser
+      tags: [Users]
+      summary: Create a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        '201':
+          description: The created user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /users/{uuid}:
+    parameters:
+      - $ref: '#/components/parameters/Uuid'
+    get:
+      operationId: getUser
+      tags: [Users]
+      summary: Get a user
+      responses:
+        '200':
+          description: A user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateUser
+      tags: [Users]
+      summary: Update a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        '200':
+          description: The updated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteUser
+      tags: [Users]
+      summary: Delete a user
+      responses:
+        '204':
+          description: The user was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users/{uuid}/integration_key:
+    parameters:
+      - $ref: '#/components/parameters/Uuid'
+    get:
+      operationId: getIntegrationKey
+      tags: [Users]
+      summary: Get a user's integration API key
+      responses:
+        '200':
+          description: The integration key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationKey'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createIntegrationKey
+      tags: [Users]
+      summary: Create a user's integration API key
+      responses:
+        '201':
+          description: The created integration key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationKey'
+    put:
+      operationId: updateIntegrationKey
+      tags: [Users]
+      summary: Rotate a user's integration API key
+      responses:
+        '200':
+          description: The rotated integration key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationKey'
+    delete:
+      operationId: deleteIntegrationKey
+      tags: [Users]
+      summary: Revoke a user's integration API key
+      responses:
+        '204':
+          description: The integration key was revoked.
+  /jobs:
+    get:
+      operationId: listJobs
+      tags: [Jobs]
+      summary: List jobs
+      parameters:
+        - $ref: '#/components/parameters/Range'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/StatusFilter'
+      responses:
+        '200':
+          description: A list of jobs.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Job'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createJob
+      tags: [Jobs]
+      summary: Create a job
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobInput'
+      responses:
+        '201':
+          description: The created job.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /jobs/{uuid}:
+    parameters:
+      - $ref: '#/components/parameters/Uuid'
+    get:
+      operationId: getJob
+      tags: [Jobs]
+      summary: Get a job
+      responses:
+        '200':
+          description: A job.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateJob
+      tags: [Jobs]
+      summary: Update a job
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobInput'
+      responses:
+        '200':
+          description: The updated job.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteJob
+      tags: [Jobs]
+      summary: Delete a job
+      responses:
+        '204':
+          description: The job was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /interviews:
+    get:
+      operationId: listInterviews
+      tags: [Interviews]
+      summary: List interviews
+      parameters:
+        - $ref: '#/components/parameters/Range'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/StatusFilter'
+        - $ref: '#/components/parameters/TypeFilter'
+      responses:
+        '200':
+          description: A list of interviews.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Interview'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createInterview
+      tags: [Interviews]
+      summary: Create an interview
+      description: >-
+        Creates a one-way or live interview for a candidate, tied to a job.
+        Triggers the InterviewCreated webhook event.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InterviewInput'
+      responses:
+        '201':
+          description: The created interview.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Interview'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /interviews/{uuid}:
+    parameters:
+      - $ref: '#/components/parameters/Uuid'
+    get:
+      operationId: getInterview
+      tags: [Interviews]
+      summary: Get an interview
+      responses:
+        '200':
+          description: An interview.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Interview'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '410':
+          description: The interview has expired and is no longer available.
+    put:
+      operationId: updateInterview
+      tags: [Interviews]
+      summary: Update an interview
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InterviewInput'
+      responses:
+        '200':
+          description: The updated interview.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Interview'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteInterview
+      tags: [Interviews]
+      summary: Delete an interview
+      responses:
+        '204':
+          description: The interview was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /interviews/{uuid}/questions:
+    parameters:
+      - $ref: '#/components/parameters/Uuid'
+    get:
+      operationId: listInterviewQuestions
+      tags: [Interview Questions]
+      summary: List questions for an interview
+      responses:
+        '200':
+          description: A list of questions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Question'
+    post:
+      operationId: createInterviewQuestion
+      tags: [Interview Questions]
+      summary: Add a question to an interview
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionInput'
+      responses:
+        '201':
+          description: The created question.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Question'
+  /interviews/{uuid}/questions/{questionUuid}:
+    parameters:
+      - $ref: '#/components/parameters/Uuid'
+      - name: questionUuid
+        in: path
+        required: true
+        description: The UUID of the question.
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: getInterviewQuestion
+      tags: [Interview Questions]
+      summary: Get a question
+      responses:
+        '200':
+          description: A question.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Question'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateInterviewQuestion
+      tags: [Interview Questions]
+      summary: Update a question
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionInput'
+      responses:
+        '200':
+          description: The updated question.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Question'
+    delete:
+      operationId: deleteInterviewQuestion
+      tags: [Interview Questions]
+      summary: Delete a question
+      responses:
+        '204':
+          description: The question was deleted.
+  /question_sets:
+    get:
+      operationId: listQuestionSets
+      tags: [Interview Questions]
+      summary: List question sets
+      parameters:
+        - $ref: '#/components/parameters/Range'
+        - $ref: '#/components/parameters/OrderBy'
+      responses:
+        '200':
+          description: A list of question sets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QuestionSet'
+    post:
+      operationId: createQuestionSet
+      tags: [Interview Questions]
+      summary: Create a question set
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionSetInput'
+      responses:
+        '201':
+          description: The created question set.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionSet'
+  /question_sets/{uuid}:
+    parameters:
+      - $ref: '#/components/parameters/Uuid'
+    get:
+      operationId: getQuestionSet
+      tags: [Interview Questions]
+      summary: Get a question set
+      responses:
+        '200':
+          description: A question set.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionSet'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateQuestionSet
+      tags: [Interview Questions]
+      summary: Update a question set
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionSetInput'
+      responses:
+        '200':
+          description: The updated question set.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionSet'
+    delete:
+      operationId: deleteQuestionSet
+      tags: [Interview Questions]
+      summary: Delete a question set
+      responses:
+        '204':
+          description: The question set was deleted.
+  /interviews/{uuid}/share_link:
+    parameters:
+      - $ref: '#/components/parameters/Uuid'
+    get:
+      operationId: getBasicShareLink
+      tags: [Share Links]
+      summary: Get the basic share link for an interview
+      responses:
+        '200':
+          description: A share link.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareLink'
+    post:
+      operationId: createBasicShareLink
+      tags: [Share Links]
+      summary: Create a basic share link for an interview
+      responses:
+        '201':
+          description: The created share link.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareLink'
+  /interviews/{uuid}/share_link/{linkUuid}:
+    parameters:
+      - $ref: '#/components/parameters/Uuid'
+      - name: linkUuid
+        in: path
+        required: true
+        description: The UUID of the share link.
+        schema:
+          type: string
+          format: uuid
+    put:
+      operationId: updateBasicShareLink
+      tags: [Share Links]
+      summary: Update a basic share link
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShareLinkInput'
+      responses:
+        '200':
+          description: The updated share link.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareLink'
+  /share_links:
+    get:
+      operationId: listShareLinks
+      tags: [Share Links]
+      summary: List advanced share links
+      parameters:
+        - $ref: '#/components/parameters/Range'
+        - $ref: '#/components/parameters/OrderBy'
+      responses:
+        '200':
+          description: A list of share links.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShareLink'
+    post:
+      operationId: createShareLink
+      tags: [Share Links]
+      summary: Create an advanced share link
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShareLinkInput'
+      responses:
+        '201':
+          description: The created share link.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareLink'
+  /share_links/{uuid}:
+    parameters:
+      - $ref: '#/components/parameters/Uuid'
+    get:
+      operationId: getShareLink
+      tags: [Share Links]
+      summary: Get an advanced share link
+      responses:
+        '200':
+          description: A share link.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareLink'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateShareLink
+      tags: [Share Links]
+      summary: Update an advanced share link
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShareLinkInput'
+      responses:
+        '200':
+          description: The updated share link.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareLink'
+    delete:
+      operationId: deleteShareLink
+      tags: [Share Links]
+      summary: Delete an advanced share link
+      responses:
+        '204':
+          description: The share link was deleted.
+  /webhooks:
+    get:
+      operationId: listWebhooks
+      tags: [Webhooks]
+      summary: List webhooks
+      responses:
+        '200':
+          description: A list of webhook subscriptions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+    post:
+      operationId: createWebhook
+      tags: [Webhooks]
+      summary: Create a webhook
+      description: >-
+        Registers a URL that Spark Hire POSTs changed objects to when a
+        subscribed event occurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+      responses:
+        '201':
+          description: The created webhook subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+  /webhooks/{uuid}:
+    parameters:
+      - $ref: '#/components/parameters/Uuid'
+    delete:
+      operationId: deleteWebhook
+      tags: [Webhooks]
+      summary: Delete a webhook
+      responses:
+        '204':
+          description: The webhook subscription was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /webhooks/replay/{event}:
+    parameters:
+      - name: event
+        in: path
+        required: true
+        description: The event type to replay (e.g. InterviewCompleted).
+        schema:
+          $ref: '#/components/schemas/WebhookEventType'
+    get:
+      operationId: replayWebhook
+      tags: [Webhooks]
+      summary: Replay a webhook event
+      description: Redelivers the most recent payload for the given event type.
+      responses:
+        '200':
+          description: The event was queued for replay.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic authentication. The username is your Spark Hire API key; the
+        password is ignored. Keys are scoped to a user and respect that user's
+        permission level.
+  parameters:
+    Uuid:
+      name: uuid
+      in: path
+      required: true
+      description: The UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+    Range:
+      name: range
+      in: query
+      required: false
+      description: Pagination range, e.g. 1-20 or 10-30.
+      schema:
+        type: string
+        example: 1-20
+    OrderBy:
+      name: orderby
+      in: query
+      required: false
+      description: Sort order, e.g. title_asc or updated_desc.
+      schema:
+        type: string
+        example: updated_desc
+    StatusFilter:
+      name: status[]
+      in: query
+      required: false
+      description: Filter by one or more statuses.
+      schema:
+        type: array
+        items:
+          type: string
+    TypeFilter:
+      name: type[]
+      in: query
+      required: false
+      description: Filter by one or more types.
+      schema:
+        type: array
+        items:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: >-
+        Rate limit exceeded (400 requests per minute). Retry after the number of
+        seconds in the X-Rate-Limit-Try-Again-Seconds header.
+      headers:
+        X-Rate-Limit-Try-Again-Seconds:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    User:
+      allOf:
+        - $ref: '#/components/schemas/UserInput'
+        - type: object
+          properties:
+            uuid:
+              type: string
+              format: uuid
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+    UserInput:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        permission_level:
+          type: string
+          description: The user's role/permission level within the company.
+    IntegrationKey:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        api_key:
+          type: string
+          description: The user's integration API key value.
+        created_at:
+          type: string
+          format: date-time
+    Plan:
+      type: object
+      properties:
+        name:
+          type: string
+        active_jobs_limit:
+          type: integer
+        users_limit:
+          type: integer
+        products:
+          type: array
+          items:
+            type: string
+    Company:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    Job:
+      allOf:
+        - $ref: '#/components/schemas/JobInput'
+        - type: object
+          properties:
+            uuid:
+              type: string
+              format: uuid
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+    JobInput:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: string
+          description: e.g. open, closed, draft.
+        description:
+          type: string
+    Interview:
+      allOf:
+        - $ref: '#/components/schemas/InterviewInput'
+        - type: object
+          properties:
+            uuid:
+              type: string
+              format: uuid
+            status:
+              type: string
+              description: >-
+                Lifecycle status - created, accepted, completed, expired,
+                rescheduled, reset, or rated.
+            rating:
+              type: number
+              nullable: true
+              description: Reviewer rating captured when the interview is evaluated.
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+    InterviewInput:
+      type: object
+      properties:
+        job_uuid:
+          type: string
+          format: uuid
+          description: The job this interview belongs to.
+        type:
+          type: string
+          description: The interview type, e.g. one_way or live.
+        candidate_first_name:
+          type: string
+        candidate_last_name:
+          type: string
+        candidate_email:
+          type: string
+          format: email
+        question_set_uuid:
+          type: string
+          format: uuid
+          nullable: true
+          description: Optional question set to apply to the interview.
+    Question:
+      allOf:
+        - $ref: '#/components/schemas/QuestionInput'
+        - type: object
+          properties:
+            uuid:
+              type: string
+              format: uuid
+    QuestionInput:
+      type: object
+      properties:
+        text:
+          type: string
+          description: The question prompt shown to the candidate.
+        type:
+          type: string
+          description: Answer format, e.g. video, text, or multiple_choice.
+        think_time:
+          type: integer
+          description: Seconds the candidate has to prepare.
+        response_time:
+          type: integer
+          description: Seconds allotted for the candidate's response.
+        order:
+          type: integer
+    QuestionSet:
+      allOf:
+        - $ref: '#/components/schemas/QuestionSetInput'
+        - type: object
+          properties:
+            uuid:
+              type: string
+              format: uuid
+            created_at:
+              type: string
+              format: date-time
+    QuestionSetInput:
+      type: object
+      properties:
+        title:
+          type: string
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionInput'
+    ShareLink:
+      allOf:
+        - $ref: '#/components/schemas/ShareLinkInput'
+        - type: object
+          properties:
+            uuid:
+              type: string
+              format: uuid
+            url:
+              type: string
+              format: uri
+            created_at:
+              type: string
+              format: date-time
+    ShareLinkInput:
+      type: object
+      properties:
+        interview_uuid:
+          type: string
+          format: uuid
+        expires_at:
+          type: string
+          format: date-time
+          nullable: true
+        password_protected:
+          type: boolean
+        allow_ratings:
+          type: boolean
+    Webhook:
+      allOf:
+        - $ref: '#/components/schemas/WebhookInput'
+        - type: object
+          properties:
+            uuid:
+              type: string
+              format: uuid
+            created_at:
+              type: string
+              format: date-time
+    WebhookInput:
+      type: object
+      required:
+        - url
+        - event
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The endpoint Spark Hire POSTs the changed object to.
+        event:
+          $ref: '#/components/schemas/WebhookEventType'
+    WebhookEventType:
+      type: string
+      enum:
+        - InterviewCreated
+        - InterviewAccepted
+        - InterviewCompleted
+        - InterviewDeleted
+        - InterviewExpired
+        - InterviewRescheduled
+        - InterviewReset
+        - InterviewRated
+        - JobCreated
+        - JobUpdated
+        - JobDeleted

@@ -1,0 +1,26 @@
+{
+  "provider": "spark-hire",
+  "sources": [
+    "spark-hire-account-api-openapi.yml",
+    "spark-hire-interview-questions-api-openapi.yml",
+    "spark-hire-interviews-api-openapi.yml",
+    "spark-hire-jobs-api-openapi.yml",
+    "spark-hire-share-links-api-openapi.yml",
+    "spark-hire-users-api-openapi.yml",
+    "spark-hire-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "spark-hire-account-api-openapi.yml",
+    "spark-hire-interview-questions-api-openapi.yml",
+    "spark-hire-interviews-api-openapi.yml",
+    "spark-hire-jobs-api-openapi.yml",
+    "spark-hire-share-links-api-openapi.yml",
+    "spark-hire-users-api-openapi.yml",
+    "spark-hire-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
