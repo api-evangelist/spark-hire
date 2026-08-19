@@ -1,0 +1,908 @@
+{
+  "item": [
+    {
+      "id": "0a8463a0-2c9d-4945-847e-0b782f0a6478",
+      "name": "Interviews",
+      "description": {
+        "content": "One-way and live video interviews.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c33ae53f-a29f-48ca-a465-ad48533251ce",
+          "name": "List interviews",
+          "request": {
+            "name": "List interviews",
+            "description": {},
+            "url": {
+              "path": [
+                "interviews"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "range",
+                  "value": "<string>",
+                  "description": "Pagination range, e.g. 1-20 or 10-30."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>",
+                  "description": "Sort order, e.g. title_asc or updated_desc."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[]",
+                  "value": "<string>",
+                  "description": "Filter by one or more statuses."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[]",
+                  "value": "<string>",
+                  "description": "Filter by one or more statuses."
+                },
+                {
+                  "disabled": false,
+                  "key": "type[]",
+                  "value": "<string>",
+                  "description": "Filter by one or more types."
+                },
+                {
+                  "disabled": false,
+                  "key": "type[]",
+                  "value": "<string>",
+                  "description": "Filter by one or more types."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86a40ead-463f-4730-8514-49e6a376c858",
+              "name": "A list of interviews.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "range",
+                      "value": "1-20"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "updated_desc"
+                    },
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type[]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"job_uuid\": \"f0c8a8d3-3046-46da-9531-3256da090d96\",\n    \"type\": \"string\",\n    \"candidate_first_name\": \"string\",\n    \"candidate_last_name\": \"string\",\n    \"candidate_email\": \"eyO0@QjNvlRZt.bo\",\n    \"question_set_uuid\": \"badd5e79-e8a7-d4c0-bae5-6519673c9092\",\n    \"uuid\": \"8a716ea8-da45-9173-462a-09771f95d805\",\n    \"status\": \"string\",\n    \"rating\": 8387.207264650291,\n    \"created_at\": \"2013-01-09T18:44:46.049Z\",\n    \"updated_at\": \"1961-05-05T18:41:47.686Z\"\n  },\n  {\n    \"job_uuid\": \"c8da309e-e476-fa6c-1bd7-5409c3a60fdf\",\n    \"type\": \"string\",\n    \"candidate_first_name\": \"string\",\n    \"candidate_last_name\": \"string\",\n    \"candidate_email\": \"0TnpHduneEu@IjelXXqCdVLAJocvhFQTIGufxBOwFIljN.el\",\n    \"question_set_uuid\": \"8d7220c2-f10b-5204-b571-aacd5520d10d\",\n    \"uuid\": \"b4a861bd-b970-8a47-735e-099850141df9\",\n    \"status\": \"string\",\n    \"rating\": 5846.2162336387255,\n    \"created_at\": \"1967-11-11T23:04:03.208Z\",\n    \"updated_at\": \"1979-09-09T10:43:44.510Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20a457e1-7d2d-4deb-936d-c82f89466378",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "range",
+                      "value": "1-20"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "updated_desc"
+                    },
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type[]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74e363bb-37a2-4339-b4c0-5550032b7a24",
+          "name": "Create an interview",
+          "request": {
+            "name": "Create an interview",
+            "description": {
+              "content": "Creates a one-way or live interview for a candidate, tied to a job. Triggers the InterviewCreated webhook event.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "interviews"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"job_uuid\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"candidate_first_name\": \"<string>\",\n  \"candidate_last_name\": \"<string>\",\n  \"candidate_email\": \"<email>\",\n  \"question_set_uuid\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "05a85108-463c-4580-af85-e1e390f4b40e",
+              "name": "The created interview.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_uuid\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"candidate_first_name\": \"<string>\",\n  \"candidate_last_name\": \"<string>\",\n  \"candidate_email\": \"<email>\",\n  \"question_set_uuid\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_uuid\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"candidate_first_name\": \"<string>\",\n  \"candidate_last_name\": \"<string>\",\n  \"candidate_email\": \"<email>\",\n  \"question_set_uuid\": \"<uuid>\",\n  \"uuid\": \"f1b1a948-d8d7-3d5f-f9d8-7ffa81004aa5\",\n  \"status\": \"string\",\n  \"rating\": 3872.2898792062874,\n  \"created_at\": \"1984-08-05T19:46:18.465Z\",\n  \"updated_at\": \"1960-07-19T01:37:43.391Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c98eaa1b-5bf0-4df8-961a-13e0f56585ef",
+              "name": "The request was malformed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_uuid\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"candidate_first_name\": \"<string>\",\n  \"candidate_last_name\": \"<string>\",\n  \"candidate_email\": \"<email>\",\n  \"question_set_uuid\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d6a201f-789c-4074-9590-8fdd9d663c1e",
+          "name": "Get an interview",
+          "request": {
+            "name": "Get an interview",
+            "description": {},
+            "url": {
+              "path": [
+                "interviews",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "726fc26b-5560-4816-8197-0d4ef3dfaef7",
+              "name": "An interview.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_uuid\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"candidate_first_name\": \"<string>\",\n  \"candidate_last_name\": \"<string>\",\n  \"candidate_email\": \"<email>\",\n  \"question_set_uuid\": \"<uuid>\",\n  \"uuid\": \"f1b1a948-d8d7-3d5f-f9d8-7ffa81004aa5\",\n  \"status\": \"string\",\n  \"rating\": 3872.2898792062874,\n  \"created_at\": \"1984-08-05T19:46:18.465Z\",\n  \"updated_at\": \"1960-07-19T01:37:43.391Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae5c836b-df76-475c-bc08-389c7274d9c9",
+              "name": "The resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f74bdccd-ebf7-4c32-a2de-34d57429867b",
+              "name": "The interview has expired and is no longer available.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abc98652-9f98-4099-884f-34c2a498ef33",
+          "name": "Update an interview",
+          "request": {
+            "name": "Update an interview",
+            "description": {},
+            "url": {
+              "path": [
+                "interviews",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"job_uuid\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"candidate_first_name\": \"<string>\",\n  \"candidate_last_name\": \"<string>\",\n  \"candidate_email\": \"<email>\",\n  \"question_set_uuid\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "238fd156-b8cc-4966-8cb1-02bf54eccd0c",
+              "name": "The updated interview.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_uuid\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"candidate_first_name\": \"<string>\",\n  \"candidate_last_name\": \"<string>\",\n  \"candidate_email\": \"<email>\",\n  \"question_set_uuid\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_uuid\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"candidate_first_name\": \"<string>\",\n  \"candidate_last_name\": \"<string>\",\n  \"candidate_email\": \"<email>\",\n  \"question_set_uuid\": \"<uuid>\",\n  \"uuid\": \"f1b1a948-d8d7-3d5f-f9d8-7ffa81004aa5\",\n  \"status\": \"string\",\n  \"rating\": 3872.2898792062874,\n  \"created_at\": \"1984-08-05T19:46:18.465Z\",\n  \"updated_at\": \"1960-07-19T01:37:43.391Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e98bac4a-0596-498f-af1c-bdcb7e586f67",
+              "name": "The resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_uuid\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"candidate_first_name\": \"<string>\",\n  \"candidate_last_name\": \"<string>\",\n  \"candidate_email\": \"<email>\",\n  \"question_set_uuid\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d8dfc8c-02bb-4486-9c59-5b306d880255",
+          "name": "Delete an interview",
+          "request": {
+            "name": "Delete an interview",
+            "description": {},
+            "url": {
+              "path": [
+                "interviews",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d83af61-be0a-40d7-8c32-9daf442aded5",
+              "name": "The interview was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bdcb89a5-9d2e-47d1-9357-a4e53c302a82",
+              "name": "The resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sparkhire.com/v1.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a2483c31-a1d0-489a-9480-b3169d54774a",
+    "name": "Spark Hire Account Interviews API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Spark Hire API embeds video interviewing and talent assessment into an applicant tracking system or custom hiring application. It is a RESTful API with JSON responses served under https://api.sparkhire.com/v1.0. It manages jobs, one-way and live video interviews, interview questions and reusable question sets, company users (evaluators) and their integration API keys, candidate share links, and webhook subscriptions for interview and job lifecycle events.\n\nAuthentication uses HTTP Basic: the username is your API key and the password is ignored. API keys are tied to an individual user and respect that user's permission level. API access is not self-serve - it must be enabled on your account by Spark Hire - but the API reference is fully public. Timestamps are RFC3339. Rate limit is 400 requests per minute; exceeding it returns 429 with an X-Rate-Limit-Try-Again-Seconds header.\n\nEndpoint paths and behavior below are transcribed from the public Spark Hire API reference at https://docs.sparkhire.com/. Request and response schemas are honestly modeled from the documented resources; exercising them live requires API access enabled by Spark Hire.\n\nContact Support:\n Name: Spark Hire",
+      "type": "text/plain"
+    }
+  }
+}

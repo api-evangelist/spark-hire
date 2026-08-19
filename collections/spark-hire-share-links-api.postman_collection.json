@@ -1,0 +1,902 @@
+{
+  "item": [
+    {
+      "id": "2bee2a9b-9a64-4e87-a6b0-b5df239babfb",
+      "name": "Share Links",
+      "description": {
+        "content": "Basic and advanced share links for reviewing interviews.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f98b2a61-66bd-4770-815b-e58845560d4b",
+          "name": "Get the basic share link for an interview",
+          "request": {
+            "name": "Get the basic share link for an interview",
+            "description": {},
+            "url": {
+              "path": [
+                "interviews",
+                ":uuid",
+                "share_link"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2c64ab43-b1af-497b-866c-b7f41ad5650f",
+              "name": "A share link.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid",
+                    "share_link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"interview_uuid\": \"4eb2596b-a0dc-73ca-6195-90b561faef27\",\n  \"expires_at\": \"1986-09-18T18:27:58.323Z\",\n  \"password_protected\": true,\n  \"allow_ratings\": false,\n  \"uuid\": \"52e927d7-1d60-fd6a-f13c-5d0a51033e8b\",\n  \"url\": \"https://tU.jbycwB6ZuuA65BdrbyJXuRt.RYIE.qxBMGmrmn1wsQ+WO\",\n  \"created_at\": \"1978-01-05T16:21:39.651Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b56e9823-9a8e-46c4-afa4-95eb60fa3f05",
+          "name": "Create a basic share link for an interview",
+          "request": {
+            "name": "Create a basic share link for an interview",
+            "description": {},
+            "url": {
+              "path": [
+                "interviews",
+                ":uuid",
+                "share_link"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5bee3225-8316-4a13-97b3-c321db14135c",
+              "name": "The created share link.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid",
+                    "share_link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"interview_uuid\": \"4eb2596b-a0dc-73ca-6195-90b561faef27\",\n  \"expires_at\": \"1986-09-18T18:27:58.323Z\",\n  \"password_protected\": true,\n  \"allow_ratings\": false,\n  \"uuid\": \"52e927d7-1d60-fd6a-f13c-5d0a51033e8b\",\n  \"url\": \"https://tU.jbycwB6ZuuA65BdrbyJXuRt.RYIE.qxBMGmrmn1wsQ+WO\",\n  \"created_at\": \"1978-01-05T16:21:39.651Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "025e1085-d1b3-4879-b180-c44c7e299f97",
+          "name": "Update a basic share link",
+          "request": {
+            "name": "Update a basic share link",
+            "description": {},
+            "url": {
+              "path": [
+                "interviews",
+                ":uuid",
+                "share_link",
+                ":linkUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "linkUuid",
+                  "description": "(Required) The UUID of the share link."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"interview_uuid\": \"<uuid>\",\n  \"expires_at\": \"<dateTime>\",\n  \"password_protected\": \"<boolean>\",\n  \"allow_ratings\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4218af15-d7e6-4bff-b6e8-8d1f187c64b9",
+              "name": "The updated share link.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid",
+                    "share_link",
+                    ":linkUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "linkUuid",
+                      "description": "(Required) The UUID of the share link."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"interview_uuid\": \"<uuid>\",\n  \"expires_at\": \"<dateTime>\",\n  \"password_protected\": \"<boolean>\",\n  \"allow_ratings\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"interview_uuid\": \"<uuid>\",\n  \"expires_at\": \"<dateTime>\",\n  \"password_protected\": \"<boolean>\",\n  \"allow_ratings\": \"<boolean>\",\n  \"uuid\": \"5413dc4d-46b0-a8d9-f488-6d27af590539\",\n  \"url\": \"http://LeAgoEknxCwQRbZJiMTt.egroua5VTNxsP7dBWrVh5jgGGv0C-IYK2f74rRcHL92\",\n  \"created_at\": \"1957-12-20T12:34:24.338Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8dbc8293-3baf-4ef3-aac9-61fbc073d455",
+          "name": "List advanced share links",
+          "request": {
+            "name": "List advanced share links",
+            "description": {},
+            "url": {
+              "path": [
+                "share_links"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "range",
+                  "value": "<string>",
+                  "description": "Pagination range, e.g. 1-20 or 10-30."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>",
+                  "description": "Sort order, e.g. title_asc or updated_desc."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35bfc4a8-b847-4a2a-8dcc-a7f50b1ebf46",
+              "name": "A list of share links.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "share_links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "range",
+                      "value": "1-20"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "updated_desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"interview_uuid\": \"<uuid>\",\n    \"expires_at\": \"<dateTime>\",\n    \"password_protected\": \"<boolean>\",\n    \"allow_ratings\": \"<boolean>\",\n    \"uuid\": \"060459af-c170-9671-d9b4-8be6e5fb05be\",\n    \"url\": \"http://vPqBlAjZyWgPwgbvQvFmw.hwjkAcMBoalX2S7f8EpYJJZfzpGA5i6a,M6kdhPho+Rf\",\n    \"created_at\": \"1968-05-26T15:44:05.355Z\"\n  },\n  {\n    \"interview_uuid\": \"<uuid>\",\n    \"expires_at\": \"<dateTime>\",\n    \"password_protected\": \"<boolean>\",\n    \"allow_ratings\": \"<boolean>\",\n    \"uuid\": \"b9f12c48-8896-217f-5a3a-5798f46a3440\",\n    \"url\": \"https://fNaPCn.cauwlP+PMnhbYFlbv+NLNRIUlDYALyYfqtJNChTA3b6kAsu0+jPIDOnYHitUl,\",\n    \"created_at\": \"1972-02-02T05:02:19.922Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e6fa35b-3bde-435c-b1a8-68c31cfe4491",
+          "name": "Create an advanced share link",
+          "request": {
+            "name": "Create an advanced share link",
+            "description": {},
+            "url": {
+              "path": [
+                "share_links"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"interview_uuid\": \"<uuid>\",\n  \"expires_at\": \"<dateTime>\",\n  \"password_protected\": \"<boolean>\",\n  \"allow_ratings\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "025c051c-1cdf-4d77-b2cf-72382b2404aa",
+              "name": "The created share link.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "share_links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"interview_uuid\": \"<uuid>\",\n  \"expires_at\": \"<dateTime>\",\n  \"password_protected\": \"<boolean>\",\n  \"allow_ratings\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"interview_uuid\": \"<uuid>\",\n  \"expires_at\": \"<dateTime>\",\n  \"password_protected\": \"<boolean>\",\n  \"allow_ratings\": \"<boolean>\",\n  \"uuid\": \"5413dc4d-46b0-a8d9-f488-6d27af590539\",\n  \"url\": \"http://LeAgoEknxCwQRbZJiMTt.egroua5VTNxsP7dBWrVh5jgGGv0C-IYK2f74rRcHL92\",\n  \"created_at\": \"1957-12-20T12:34:24.338Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1ba4407-ba23-4e7a-8f56-c321f4845dea",
+          "name": "Get an advanced share link",
+          "request": {
+            "name": "Get an advanced share link",
+            "description": {},
+            "url": {
+              "path": [
+                "share_links",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9afa9a03-744d-489a-b78a-6c2978f2c501",
+              "name": "A share link.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "share_links",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"interview_uuid\": \"<uuid>\",\n  \"expires_at\": \"<dateTime>\",\n  \"password_protected\": \"<boolean>\",\n  \"allow_ratings\": \"<boolean>\",\n  \"uuid\": \"5413dc4d-46b0-a8d9-f488-6d27af590539\",\n  \"url\": \"http://LeAgoEknxCwQRbZJiMTt.egroua5VTNxsP7dBWrVh5jgGGv0C-IYK2f74rRcHL92\",\n  \"created_at\": \"1957-12-20T12:34:24.338Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c297fc2-3a02-461f-8703-c9bdb2bca5f3",
+              "name": "The resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "share_links",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb32eae2-f723-442f-906d-286dba9ad0df",
+          "name": "Update an advanced share link",
+          "request": {
+            "name": "Update an advanced share link",
+            "description": {},
+            "url": {
+              "path": [
+                "share_links",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"interview_uuid\": \"<uuid>\",\n  \"expires_at\": \"<dateTime>\",\n  \"password_protected\": \"<boolean>\",\n  \"allow_ratings\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e8c1c58-d852-415a-8f16-73e359c2cd39",
+              "name": "The updated share link.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "share_links",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"interview_uuid\": \"<uuid>\",\n  \"expires_at\": \"<dateTime>\",\n  \"password_protected\": \"<boolean>\",\n  \"allow_ratings\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"interview_uuid\": \"<uuid>\",\n  \"expires_at\": \"<dateTime>\",\n  \"password_protected\": \"<boolean>\",\n  \"allow_ratings\": \"<boolean>\",\n  \"uuid\": \"5413dc4d-46b0-a8d9-f488-6d27af590539\",\n  \"url\": \"http://LeAgoEknxCwQRbZJiMTt.egroua5VTNxsP7dBWrVh5jgGGv0C-IYK2f74rRcHL92\",\n  \"created_at\": \"1957-12-20T12:34:24.338Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe118b2a-834d-4e7b-8383-f7d0e145c0a9",
+          "name": "Delete an advanced share link",
+          "request": {
+            "name": "Delete an advanced share link",
+            "description": {},
+            "url": {
+              "path": [
+                "share_links",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b512793-7837-41fc-acc9-b6f1034bd804",
+              "name": "The share link was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "share_links",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sparkhire.com/v1.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7716b4e7-2f46-4f47-b493-c692b338c7d9",
+    "name": "Spark Hire Account Share Links API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Spark Hire API embeds video interviewing and talent assessment into an applicant tracking system or custom hiring application. It is a RESTful API with JSON responses served under https://api.sparkhire.com/v1.0. It manages jobs, one-way and live video interviews, interview questions and reusable question sets, company users (evaluators) and their integration API keys, candidate share links, and webhook subscriptions for interview and job lifecycle events.\n\nAuthentication uses HTTP Basic: the username is your API key and the password is ignored. API keys are tied to an individual user and respect that user's permission level. API access is not self-serve - it must be enabled on your account by Spark Hire - but the API reference is fully public. Timestamps are RFC3339. Rate limit is 400 requests per minute; exceeding it returns 429 with an X-Rate-Limit-Try-Again-Seconds header.\n\nEndpoint paths and behavior below are transcribed from the public Spark Hire API reference at https://docs.sparkhire.com/. Request and response schemas are honestly modeled from the documented resources; exercising them live requires API access enabled by Spark Hire.\n\nContact Support:\n Name: Spark Hire",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spark Hire Account Share Links API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Share Links",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the basic share link for an interview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/share_link",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Get the basic share link for an interview"
+        },
+        {
+          "info": {
+            "name": "Create a basic share link for an interview",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/share_link",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Create a basic share link for an interview"
+        },
+        {
+          "info": {
+            "name": "Update a basic share link",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/share_link/:linkUuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the resource."
+              },
+              {
+                "name": "linkUuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the share link."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a basic share link"
+        },
+        {
+          "info": {
+            "name": "List advanced share links",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sparkhire.com/v1.0/share_links",
+            "params": [
+              {
+                "name": "range",
+                "value": "",
+                "type": "query",
+                "description": "Pagination range, e.g. 1-20 or 10-30."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort order, e.g. title_asc or updated_desc."
+              }
+            ]
+          },
+          "docs": "List advanced share links"
+        },
+        {
+          "info": {
+            "name": "Create an advanced share link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sparkhire.com/v1.0/share_links",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an advanced share link"
+        },
+        {
+          "info": {
+            "name": "Get an advanced share link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sparkhire.com/v1.0/share_links/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Get an advanced share link"
+        },
+        {
+          "info": {
+            "name": "Update an advanced share link",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sparkhire.com/v1.0/share_links/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an advanced share link"
+        },
+        {
+          "info": {
+            "name": "Delete an advanced share link",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sparkhire.com/v1.0/share_links/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Delete an advanced share link"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

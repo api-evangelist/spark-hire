@@ -1,0 +1,247 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spark Hire Account Interview Questions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Interview Questions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List questions for an interview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/questions",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the resource."
+              }
+            ]
+          },
+          "docs": "List questions for an interview"
+        },
+        {
+          "info": {
+            "name": "Add a question to an interview",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/questions",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a question to an interview"
+        },
+        {
+          "info": {
+            "name": "Get a question",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/questions/:questionUuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the resource."
+              },
+              {
+                "name": "questionUuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the question."
+              }
+            ]
+          },
+          "docs": "Get a question"
+        },
+        {
+          "info": {
+            "name": "Update a question",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/questions/:questionUuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the resource."
+              },
+              {
+                "name": "questionUuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the question."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a question"
+        },
+        {
+          "info": {
+            "name": "Delete a question",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sparkhire.com/v1.0/interviews/:uuid/questions/:questionUuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the resource."
+              },
+              {
+                "name": "questionUuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the question."
+              }
+            ]
+          },
+          "docs": "Delete a question"
+        },
+        {
+          "info": {
+            "name": "List question sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sparkhire.com/v1.0/question_sets",
+            "params": [
+              {
+                "name": "range",
+                "value": "",
+                "type": "query",
+                "description": "Pagination range, e.g. 1-20 or 10-30."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort order, e.g. title_asc or updated_desc."
+              }
+            ]
+          },
+          "docs": "List question sets"
+        },
+        {
+          "info": {
+            "name": "Create a question set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sparkhire.com/v1.0/question_sets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a question set"
+        },
+        {
+          "info": {
+            "name": "Get a question set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sparkhire.com/v1.0/question_sets/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Get a question set"
+        },
+        {
+          "info": {
+            "name": "Update a question set",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sparkhire.com/v1.0/question_sets/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a question set"
+        },
+        {
+          "info": {
+            "name": "Delete a question set",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sparkhire.com/v1.0/question_sets/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Delete a question set"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

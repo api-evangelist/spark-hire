@@ -1,0 +1,1196 @@
+{
+  "item": [
+    {
+      "id": "dca10797-eb68-4dce-ac3e-e72cda22d595",
+      "name": "Interview Questions",
+      "description": {
+        "content": "Questions within an interview and reusable question sets.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "37f412a4-5b16-4bdb-b4e6-3fb41e8311ec",
+          "name": "List questions for an interview",
+          "request": {
+            "name": "List questions for an interview",
+            "description": {},
+            "url": {
+              "path": [
+                "interviews",
+                ":uuid",
+                "questions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a582f54-74ba-492a-b094-ea68daf853e4",
+              "name": "A list of questions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid",
+                    "questions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"text\": \"string\",\n    \"type\": \"string\",\n    \"think_time\": 8927,\n    \"response_time\": 5618,\n    \"order\": 9103,\n    \"uuid\": \"235fe95b-6e84-18ce-6f19-7673f31312ae\"\n  },\n  {\n    \"text\": \"string\",\n    \"type\": \"string\",\n    \"think_time\": 8664,\n    \"response_time\": 6407,\n    \"order\": 5310,\n    \"uuid\": \"41524be7-0eae-8b96-0dc7-e5b00ff393da\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b52253f-97b9-44ca-bf00-bc34d00af423",
+          "name": "Add a question to an interview",
+          "request": {
+            "name": "Add a question to an interview",
+            "description": {},
+            "url": {
+              "path": [
+                "interviews",
+                ":uuid",
+                "questions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\",\n  \"type\": \"<string>\",\n  \"think_time\": \"<integer>\",\n  \"response_time\": \"<integer>\",\n  \"order\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "627fe7fa-3b02-4baf-a07e-d26eeca9d6a0",
+              "name": "The created question.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid",
+                    "questions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"type\": \"<string>\",\n  \"think_time\": \"<integer>\",\n  \"response_time\": \"<integer>\",\n  \"order\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"text\": \"<string>\",\n  \"type\": \"<string>\",\n  \"think_time\": \"<integer>\",\n  \"response_time\": \"<integer>\",\n  \"order\": \"<integer>\",\n  \"uuid\": \"ecdbcd3e-44d3-6f79-c34b-da7f8e76ebe3\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c33f2428-5aba-4394-84d6-462f91bdd45b",
+          "name": "Get a question",
+          "request": {
+            "name": "Get a question",
+            "description": {},
+            "url": {
+              "path": [
+                "interviews",
+                ":uuid",
+                "questions",
+                ":questionUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "questionUuid",
+                  "description": "(Required) The UUID of the question."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1b3f0c1-ec89-40de-be8f-c204a00fcae8",
+              "name": "A question.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid",
+                    "questions",
+                    ":questionUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "questionUuid",
+                      "description": "(Required) The UUID of the question."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"text\": \"<string>\",\n  \"type\": \"<string>\",\n  \"think_time\": \"<integer>\",\n  \"response_time\": \"<integer>\",\n  \"order\": \"<integer>\",\n  \"uuid\": \"ecdbcd3e-44d3-6f79-c34b-da7f8e76ebe3\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac3ee52b-15ac-48b6-bfc3-a2e59226f4fb",
+              "name": "The resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid",
+                    "questions",
+                    ":questionUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "questionUuid",
+                      "description": "(Required) The UUID of the question."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "792402b3-42d2-4c10-96b1-46d491deed1f",
+          "name": "Update a question",
+          "request": {
+            "name": "Update a question",
+            "description": {},
+            "url": {
+              "path": [
+                "interviews",
+                ":uuid",
+                "questions",
+                ":questionUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "questionUuid",
+                  "description": "(Required) The UUID of the question."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\",\n  \"type\": \"<string>\",\n  \"think_time\": \"<integer>\",\n  \"response_time\": \"<integer>\",\n  \"order\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1b2ddf3-08ab-40ee-b008-d0997076d62d",
+              "name": "The updated question.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid",
+                    "questions",
+                    ":questionUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "questionUuid",
+                      "description": "(Required) The UUID of the question."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"type\": \"<string>\",\n  \"think_time\": \"<integer>\",\n  \"response_time\": \"<integer>\",\n  \"order\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"text\": \"<string>\",\n  \"type\": \"<string>\",\n  \"think_time\": \"<integer>\",\n  \"response_time\": \"<integer>\",\n  \"order\": \"<integer>\",\n  \"uuid\": \"ecdbcd3e-44d3-6f79-c34b-da7f8e76ebe3\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9edacb63-6625-4dd5-875a-aa616958c0bb",
+          "name": "Delete a question",
+          "request": {
+            "name": "Delete a question",
+            "description": {},
+            "url": {
+              "path": [
+                "interviews",
+                ":uuid",
+                "questions",
+                ":questionUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "questionUuid",
+                  "description": "(Required) The UUID of the question."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f786aa46-d472-471d-99c8-692cfda8e739",
+              "name": "The question was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interviews",
+                    ":uuid",
+                    "questions",
+                    ":questionUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "questionUuid",
+                      "description": "(Required) The UUID of the question."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0eebcc1-83b3-4693-a927-617643267e65",
+          "name": "List question sets",
+          "request": {
+            "name": "List question sets",
+            "description": {},
+            "url": {
+              "path": [
+                "question_sets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "range",
+                  "value": "<string>",
+                  "description": "Pagination range, e.g. 1-20 or 10-30."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>",
+                  "description": "Sort order, e.g. title_asc or updated_desc."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17f0cc49-aeae-47a7-911b-6c5e4dbdb38b",
+              "name": "A list of question sets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "question_sets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "range",
+                      "value": "1-20"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "updated_desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"title\": \"string\",\n    \"questions\": [\n      {\n        \"text\": \"<string>\",\n        \"type\": \"<string>\",\n        \"think_time\": \"<integer>\",\n        \"response_time\": \"<integer>\",\n        \"order\": \"<integer>\"\n      },\n      {\n        \"text\": \"<string>\",\n        \"type\": \"<string>\",\n        \"think_time\": \"<integer>\",\n        \"response_time\": \"<integer>\",\n        \"order\": \"<integer>\"\n      }\n    ],\n    \"uuid\": \"fbafd3f6-011a-16e8-a37e-9f70ed8793b1\",\n    \"created_at\": \"1982-05-17T15:39:34.460Z\"\n  },\n  {\n    \"title\": \"string\",\n    \"questions\": [\n      {\n        \"text\": \"<string>\",\n        \"type\": \"<string>\",\n        \"think_time\": \"<integer>\",\n        \"response_time\": \"<integer>\",\n        \"order\": \"<integer>\"\n      },\n      {\n        \"text\": \"<string>\",\n        \"type\": \"<string>\",\n        \"think_time\": \"<integer>\",\n        \"response_time\": \"<integer>\",\n        \"order\": \"<integer>\"\n      }\n    ],\n    \"uuid\": \"a861cd16-874b-065b-3f4f-f3b73991a6e2\",\n    \"created_at\": \"2017-12-10T19:43:47.594Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79461fcc-abac-489d-a23c-ae7c2f6ffde3",
+          "name": "Create a question set",
+          "request": {
+            "name": "Create a question set",
+            "description": {},
+            "url": {
+              "path": [
+                "question_sets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"questions\": [\n    {\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"think_time\": \"<integer>\",\n      \"response_time\": \"<integer>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"think_time\": \"<integer>\",\n      \"response_time\": \"<integer>\",\n      \"order\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad22f53b-994b-4b92-83e6-2496a65ea98a",
+              "name": "The created question set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "question_sets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"questions\": [\n    {\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"think_time\": \"<integer>\",\n      \"response_time\": \"<integer>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"think_time\": \"<integer>\",\n      \"response_time\": \"<integer>\",\n      \"order\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"<string>\",\n  \"questions\": [\n    {\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"think_time\": \"<integer>\",\n      \"response_time\": \"<integer>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"think_time\": \"<integer>\",\n      \"response_time\": \"<integer>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"uuid\": \"0f3888c2-54e7-8ce5-814f-f9ee1752e09b\",\n  \"created_at\": \"1990-07-06T18:22:46.896Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b33beb4b-c4ad-4e53-9cfc-057887485a2a",
+          "name": "Get a question set",
+          "request": {
+            "name": "Get a question set",
+            "description": {},
+            "url": {
+              "path": [
+                "question_sets",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "361c5ff3-8bcf-42a0-bacd-bcc423b2740a",
+              "name": "A question set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "question_sets",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"<string>\",\n  \"questions\": [\n    {\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"think_time\": \"<integer>\",\n      \"response_time\": \"<integer>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"think_time\": \"<integer>\",\n      \"response_time\": \"<integer>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"uuid\": \"0f3888c2-54e7-8ce5-814f-f9ee1752e09b\",\n  \"created_at\": \"1990-07-06T18:22:46.896Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e644291f-8884-4bdb-86a1-f1b67aefa732",
+              "name": "The resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "question_sets",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c91f5c2-2f51-4f6d-b317-db3ee03854b8",
+          "name": "Update a question set",
+          "request": {
+            "name": "Update a question set",
+            "description": {},
+            "url": {
+              "path": [
+                "question_sets",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"questions\": [\n    {\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"think_time\": \"<integer>\",\n      \"response_time\": \"<integer>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"think_time\": \"<integer>\",\n      \"response_time\": \"<integer>\",\n      \"order\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f547c530-e2cb-4667-a058-a6172334aa02",
+              "name": "The updated question set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "question_sets",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"questions\": [\n    {\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"think_time\": \"<integer>\",\n      \"response_time\": \"<integer>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"think_time\": \"<integer>\",\n      \"response_time\": \"<integer>\",\n      \"order\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"<string>\",\n  \"questions\": [\n    {\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"think_time\": \"<integer>\",\n      \"response_time\": \"<integer>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"think_time\": \"<integer>\",\n      \"response_time\": \"<integer>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"uuid\": \"0f3888c2-54e7-8ce5-814f-f9ee1752e09b\",\n  \"created_at\": \"1990-07-06T18:22:46.896Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e36a559a-abf4-41ef-8ae9-5f7a8b52c26b",
+          "name": "Delete a question set",
+          "request": {
+            "name": "Delete a question set",
+            "description": {},
+            "url": {
+              "path": [
+                "question_sets",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The UUID of the resource."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "09db9bc5-5350-44c7-8886-3988744cb009",
+              "name": "The question set was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "question_sets",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sparkhire.com/v1.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "13041098-98a1-494c-af13-cc7f7c4c7460",
+    "name": "Spark Hire Account Interview Questions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Spark Hire API embeds video interviewing and talent assessment into an applicant tracking system or custom hiring application. It is a RESTful API with JSON responses served under https://api.sparkhire.com/v1.0. It manages jobs, one-way and live video interviews, interview questions and reusable question sets, company users (evaluators) and their integration API keys, candidate share links, and webhook subscriptions for interview and job lifecycle events.\n\nAuthentication uses HTTP Basic: the username is your API key and the password is ignored. API keys are tied to an individual user and respect that user's permission level. API access is not self-serve - it must be enabled on your account by Spark Hire - but the API reference is fully public. Timestamps are RFC3339. Rate limit is 400 requests per minute; exceeding it returns 429 with an X-Rate-Limit-Try-Again-Seconds header.\n\nEndpoint paths and behavior below are transcribed from the public Spark Hire API reference at https://docs.sparkhire.com/. Request and response schemas are honestly modeled from the documented resources; exercising them live requires API access enabled by Spark Hire.\n\nContact Support:\n Name: Spark Hire",
+      "type": "text/plain"
+    }
+  }
+}
