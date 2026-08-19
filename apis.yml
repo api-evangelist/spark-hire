@@ -34,7 +34,7 @@ tags:
 - ATS
 created: '2026-07-10'
 modified: '2026-07-10'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: spark-hire:spark-hire-account-api
   name: Spark Hire Account API
