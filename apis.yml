@@ -96,6 +96,8 @@ apis:
   humanURL: https://docs.sparkhire.com/
   baseURL: https://api.sparkhire.com/v1.0
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -132,6 +134,8 @@ apis:
   humanURL: https://docs.sparkhire.com/
   baseURL: https://api.sparkhire.com/v1.0
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -150,6 +154,8 @@ apis:
   humanURL: https://docs.sparkhire.com/
   baseURL: https://api.sparkhire.com/v1.0
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
