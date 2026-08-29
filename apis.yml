@@ -11,6 +11,18 @@ description: Spark Hire is a video interviewing and talent assessment platform t
   are JSON over HTTPS under https://api.sparkhire.com/v1.0, authenticated with a
   per-user API key via HTTP Basic. API access is not self-serve - it must be enabled
   on your account by Spark Hire - but the API reference is fully public.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
