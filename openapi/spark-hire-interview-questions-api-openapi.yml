@@ -1,13 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Spark Hire Account Interview Questions API
-  description: 'The Spark Hire API embeds video interviewing and talent assessment into an applicant tracking system or custom hiring application. It is a RESTful API with JSON responses served under https://api.sparkhire.com/v1.0. It manages jobs, one-way and live video interviews, interview questions and reusable question sets, company users (evaluators) and their integration API keys, candidate share links, and webhook subscriptions for interview and job lifecycle events.
-
-
-    Authentication uses HTTP Basic: the username is your API key and the password is ignored. API keys are tied to an individual user and respect that user''s permission level. API access is not self-serve - it must be enabled on your account by Spark Hire - but the API reference is fully public. Timestamps are RFC3339. Rate limit is 400 requests per minute; exceeding it returns 429 with an X-Rate-Limit-Try-Again-Seconds header.
-
-
-    Endpoint paths and behavior below are transcribed from the public Spark Hire API reference at https://docs.sparkhire.com/. Request and response schemas are honestly modeled from the documented resources; exercising them live requires API access enabled by Spark Hire.'
+  title: Spark Hire Interview Questions API
+  description: The Spark Hire API embeds video interviewing and talent assessment into an applicant tracking system or custom hiring application.
   version: '1.0'
   contact:
     name: Spark Hire
@@ -186,31 +180,6 @@ paths:
         '204':
           description: The question set was deleted.
 components:
-  parameters:
-    Uuid:
-      name: uuid
-      in: path
-      required: true
-      description: The UUID of the resource.
-      schema:
-        type: string
-        format: uuid
-    Range:
-      name: range
-      in: query
-      required: false
-      description: Pagination range, e.g. 1-20 or 10-30.
-      schema:
-        type: string
-        example: 1-20
-    OrderBy:
-      name: orderby
-      in: query
-      required: false
-      description: Sort order, e.g. title_asc or updated_desc.
-      schema:
-        type: string
-        example: updated_desc
   schemas:
     Question:
       allOf:
@@ -237,15 +206,6 @@ components:
           description: Seconds allotted for the candidate's response.
         order:
           type: integer
-    QuestionSetInput:
-      type: object
-      properties:
-        title:
-          type: string
-        questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuestionInput'
     QuestionSet:
       allOf:
       - $ref: '#/components/schemas/QuestionSetInput'
@@ -257,6 +217,15 @@ components:
           created_at:
             type: string
             format: date-time
+    QuestionSetInput:
+      type: object
+      properties:
+        title:
+          type: string
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionInput'
     Error:
       type: object
       properties:
@@ -264,6 +233,31 @@ components:
           type: string
         message:
           type: string
+  parameters:
+    Uuid:
+      name: uuid
+      in: path
+      required: true
+      description: The UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+    Range:
+      name: range
+      in: query
+      required: false
+      description: Pagination range, e.g. 1-20 or 10-30.
+      schema:
+        type: string
+        example: 1-20
+    OrderBy:
+      name: orderby
+      in: query
+      required: false
+      description: Sort order, e.g. title_asc or updated_desc.
+      schema:
+        type: string
+        example: updated_desc
   responses:
     NotFound:
       description: The resource was not found.

@@ -1,13 +1,7 @@
 {
   "provider": "spark-hire",
   "sources": [
-    "spark-hire-account-api-openapi.yml",
-    "spark-hire-interview-questions-api-openapi.yml",
-    "spark-hire-interviews-api-openapi.yml",
-    "spark-hire-jobs-api-openapi.yml",
-    "spark-hire-share-links-api-openapi.yml",
-    "spark-hire-users-api-openapi.yml",
-    "spark-hire-webhooks-api-openapi.yml"
+    "_original/spark-hire-openapi.yml"
   ],
   "outputs": [
     "spark-hire-account-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "spark-hire-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "spark-hire-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spark-hire-interview-questions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spark-hire-interviews-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spark-hire-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spark-hire-share-links-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spark-hire-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spark-hire-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
