@@ -70,6 +70,17 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Company:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
     User:
       allOf:
       - $ref: '#/components/schemas/UserInput'
@@ -117,29 +128,7 @@ components:
           type: string
         message:
           type: string
-    Company:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-        name:
-          type: string
-        created_at:
-          type: string
-          format: date-time
   responses:
-    RateLimited:
-      description: Rate limit exceeded (400 requests per minute). Retry after the number of seconds in the X-Rate-Limit-Try-Again-Seconds header.
-      headers:
-        X-Rate-Limit-Try-Again-Seconds:
-          description: Seconds to wait before retrying.
-          schema:
-            type: integer
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing or invalid API key.
       content:
@@ -148,6 +137,17 @@ components:
             $ref: '#/components/schemas/Error'
     NotFound:
       description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate limit exceeded (400 requests per minute). Retry after the number of seconds in the X-Rate-Limit-Try-Again-Seconds header.
+      headers:
+        X-Rate-Limit-Try-Again-Seconds:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
       content:
         application/json:
           schema:

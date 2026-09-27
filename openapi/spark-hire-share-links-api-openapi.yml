@@ -151,20 +151,6 @@ paths:
           description: The share link was deleted.
 components:
   schemas:
-    ShareLink:
-      allOf:
-      - $ref: '#/components/schemas/ShareLinkInput'
-      - type: object
-        properties:
-          uuid:
-            type: string
-            format: uuid
-          url:
-            type: string
-            format: uri
-          created_at:
-            type: string
-            format: date-time
     ShareLinkInput:
       type: object
       properties:
@@ -180,6 +166,20 @@ components:
           type: boolean
         allow_ratings:
           type: boolean
+    ShareLink:
+      allOf:
+      - $ref: '#/components/schemas/ShareLinkInput'
+      - type: object
+        properties:
+          uuid:
+            type: string
+            format: uuid
+          url:
+            type: string
+            format: uri
+          created_at:
+            type: string
+            format: date-time
     Error:
       type: object
       properties:

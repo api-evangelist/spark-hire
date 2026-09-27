@@ -173,14 +173,6 @@ components:
         type: array
         items:
           type: string
-    Range:
-      name: range
-      in: query
-      required: false
-      description: Pagination range, e.g. 1-20 or 10-30.
-      schema:
-        type: string
-        example: 1-20
     OrderBy:
       name: orderby
       in: query
@@ -189,6 +181,14 @@ components:
       schema:
         type: string
         example: updated_desc
+    Range:
+      name: range
+      in: query
+      required: false
+      description: Pagination range, e.g. 1-20 or 10-30.
+      schema:
+        type: string
+        example: 1-20
   securitySchemes:
     basicAuth:
       type: http

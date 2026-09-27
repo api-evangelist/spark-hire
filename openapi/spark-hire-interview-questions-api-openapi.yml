@@ -189,23 +189,6 @@ components:
           uuid:
             type: string
             format: uuid
-    QuestionInput:
-      type: object
-      properties:
-        text:
-          type: string
-          description: The question prompt shown to the candidate.
-        type:
-          type: string
-          description: Answer format, e.g. video, text, or multiple_choice.
-        think_time:
-          type: integer
-          description: Seconds the candidate has to prepare.
-        response_time:
-          type: integer
-          description: Seconds allotted for the candidate's response.
-        order:
-          type: integer
     QuestionSet:
       allOf:
       - $ref: '#/components/schemas/QuestionSetInput'
@@ -233,6 +216,23 @@ components:
           type: string
         message:
           type: string
+    QuestionInput:
+      type: object
+      properties:
+        text:
+          type: string
+          description: The question prompt shown to the candidate.
+        type:
+          type: string
+          description: Answer format, e.g. video, text, or multiple_choice.
+        think_time:
+          type: integer
+          description: Seconds the candidate has to prepare.
+        response_time:
+          type: integer
+          description: Seconds allotted for the candidate's response.
+        order:
+          type: integer
   parameters:
     Uuid:
       name: uuid
