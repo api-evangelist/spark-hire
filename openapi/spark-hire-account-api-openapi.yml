@@ -70,17 +70,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Company:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-        name:
-          type: string
-        created_at:
-          type: string
-          format: date-time
     User:
       allOf:
       - $ref: '#/components/schemas/UserInput'
@@ -95,19 +84,24 @@ components:
           updated_at:
             type: string
             format: date-time
-    UserInput:
+    Error:
       type: object
       properties:
-        first_name:
+        error:
           type: string
-        last_name:
+        message:
           type: string
-        email:
+    Company:
+      type: object
+      properties:
+        uuid:
           type: string
-          format: email
-        permission_level:
+          format: uuid
+        name:
           type: string
-          description: The user's role/permission level within the company.
+        created_at:
+          type: string
+          format: date-time
     Plan:
       type: object
       properties:
@@ -121,20 +115,20 @@ components:
           type: array
           items:
             type: string
-    Error:
+    UserInput:
       type: object
       properties:
-        error:
+        first_name:
           type: string
-        message:
+        last_name:
           type: string
+        email:
+          type: string
+          format: email
+        permission_level:
+          type: string
+          description: The user's role/permission level within the company.
   responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: The resource was not found.
       content:
@@ -148,6 +142,12 @@ components:
           description: Seconds to wait before retrying.
           schema:
             type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
       content:
         application/json:
           schema:

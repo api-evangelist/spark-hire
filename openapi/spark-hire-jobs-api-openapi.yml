@@ -137,6 +137,12 @@ components:
         message:
           type: string
   responses:
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     BadRequest:
       description: The request was malformed.
       content:
@@ -149,21 +155,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
-    Uuid:
-      name: uuid
-      in: path
-      required: true
-      description: The UUID of the resource.
+    OrderBy:
+      name: orderby
+      in: query
+      required: false
+      description: Sort order, e.g. title_asc or updated_desc.
       schema:
         type: string
-        format: uuid
+        example: updated_desc
     StatusFilter:
       name: status[]
       in: query
@@ -173,14 +173,14 @@ components:
         type: array
         items:
           type: string
-    OrderBy:
-      name: orderby
-      in: query
-      required: false
-      description: Sort order, e.g. title_asc or updated_desc.
+    Uuid:
+      name: uuid
+      in: path
+      required: true
+      description: The UUID of the resource.
       schema:
         type: string
-        example: updated_desc
+        format: uuid
     Range:
       name: range
       in: query
