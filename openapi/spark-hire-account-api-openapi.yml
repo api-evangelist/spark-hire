@@ -70,27 +70,19 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    User:
-      allOf:
-      - $ref: '#/components/schemas/UserInput'
-      - type: object
-        properties:
-          uuid:
-            type: string
-            format: uuid
-          created_at:
-            type: string
-            format: date-time
-          updated_at:
-            type: string
-            format: date-time
-    Error:
+    UserInput:
       type: object
       properties:
-        error:
+        first_name:
           type: string
-        message:
+        last_name:
           type: string
+        email:
+          type: string
+          format: email
+        permission_level:
+          type: string
+          description: The user's role/permission level within the company.
     Company:
       type: object
       properties:
@@ -115,22 +107,39 @@ components:
           type: array
           items:
             type: string
-    UserInput:
+    User:
+      allOf:
+      - $ref: '#/components/schemas/UserInput'
+      - type: object
+        properties:
+          uuid:
+            type: string
+            format: uuid
+          created_at:
+            type: string
+            format: date-time
+          updated_at:
+            type: string
+            format: date-time
+    Error:
       type: object
       properties:
-        first_name:
+        error:
           type: string
-        last_name:
+        message:
           type: string
-        email:
-          type: string
-          format: email
-        permission_level:
-          type: string
-          description: The user's role/permission level within the company.
+  parameters:
+    Uuid:
+      name: uuid
+      in: path
+      required: true
+      description: The UUID of the resource.
+      schema:
+        type: string
+        format: uuid
   responses:
-    NotFound:
-      description: The resource was not found.
+    Unauthorized:
+      description: Missing or invalid API key.
       content:
         application/json:
           schema:
@@ -146,21 +155,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key.
+    NotFound:
+      description: The resource was not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    Uuid:
-      name: uuid
-      in: path
-      required: true
-      description: The UUID of the resource.
-      schema:
-        type: string
-        format: uuid
   securitySchemes:
     basicAuth:
       type: http

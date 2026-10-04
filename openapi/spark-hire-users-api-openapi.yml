@@ -155,18 +155,19 @@ paths:
           description: The integration key was revoked.
 components:
   schemas:
-    IntegrationKey:
+    UserInput:
       type: object
       properties:
-        uuid:
+        first_name:
           type: string
-          format: uuid
-        api_key:
+        last_name:
           type: string
-          description: The user's integration API key value.
-        created_at:
+        email:
           type: string
-          format: date-time
+          format: email
+        permission_level:
+          type: string
+          description: The user's role/permission level within the company.
     User:
       allOf:
       - $ref: '#/components/schemas/UserInput'
@@ -188,47 +189,19 @@ components:
           type: string
         message:
           type: string
-    UserInput:
+    IntegrationKey:
       type: object
       properties:
-        first_name:
+        uuid:
           type: string
-        last_name:
+          format: uuid
+        api_key:
           type: string
-        email:
+          description: The user's integration API key value.
+        created_at:
           type: string
-          format: email
-        permission_level:
-          type: string
-          description: The user's role/permission level within the company.
-  responses:
-    NotFound:
-      description: The resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+          format: date-time
   parameters:
-    OrderBy:
-      name: orderby
-      in: query
-      required: false
-      description: Sort order, e.g. title_asc or updated_desc.
-      schema:
-        type: string
-        example: updated_desc
     Uuid:
       name: uuid
       in: path
@@ -245,6 +218,33 @@ components:
       schema:
         type: string
         example: 1-20
+    OrderBy:
+      name: orderby
+      in: query
+      required: false
+      description: Sort order, e.g. title_asc or updated_desc.
+      schema:
+        type: string
+        example: updated_desc
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http

@@ -136,26 +136,23 @@ components:
           type: string
         message:
           type: string
-  responses:
-    NotFound:
-      description: The resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
+    Uuid:
+      name: uuid
+      in: path
+      required: true
+      description: The UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+    Range:
+      name: range
+      in: query
+      required: false
+      description: Pagination range, e.g. 1-20 or 10-30.
+      schema:
+        type: string
+        example: 1-20
     OrderBy:
       name: orderby
       in: query
@@ -173,22 +170,25 @@ components:
         type: array
         items:
           type: string
-    Uuid:
-      name: uuid
-      in: path
-      required: true
-      description: The UUID of the resource.
-      schema:
-        type: string
-        format: uuid
-    Range:
-      name: range
-      in: query
-      required: false
-      description: Pagination range, e.g. 1-20 or 10-30.
-      schema:
-        type: string
-        example: 1-20
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http

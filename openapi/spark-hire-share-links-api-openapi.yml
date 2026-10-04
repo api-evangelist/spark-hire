@@ -150,6 +150,31 @@ paths:
         '204':
           description: The share link was deleted.
 components:
+  parameters:
+    Uuid:
+      name: uuid
+      in: path
+      required: true
+      description: The UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+    Range:
+      name: range
+      in: query
+      required: false
+      description: Pagination range, e.g. 1-20 or 10-30.
+      schema:
+        type: string
+        example: 1-20
+    OrderBy:
+      name: orderby
+      in: query
+      required: false
+      description: Sort order, e.g. title_asc or updated_desc.
+      schema:
+        type: string
+        example: updated_desc
   schemas:
     ShareLinkInput:
       type: object
@@ -194,31 +219,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    OrderBy:
-      name: orderby
-      in: query
-      required: false
-      description: Sort order, e.g. title_asc or updated_desc.
-      schema:
-        type: string
-        example: updated_desc
-    Uuid:
-      name: uuid
-      in: path
-      required: true
-      description: The UUID of the resource.
-      schema:
-        type: string
-        format: uuid
-    Range:
-      name: range
-      in: query
-      required: false
-      description: Pagination range, e.g. 1-20 or 10-30.
-      schema:
-        type: string
-        example: 1-20
   securitySchemes:
     basicAuth:
       type: http

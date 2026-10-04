@@ -108,60 +108,13 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  schemas:
-    Interview:
-      allOf:
-      - $ref: '#/components/schemas/InterviewInput'
-      - type: object
-        properties:
-          uuid:
-            type: string
-            format: uuid
-          status:
-            type: string
-            description: Lifecycle status - created, accepted, completed, expired, rescheduled, reset, or rated.
-          rating:
-            type:
-            - number
-            - 'null'
-            description: Reviewer rating captured when the interview is evaluated.
-          created_at:
-            type: string
-            format: date-time
-          updated_at:
-            type: string
-            format: date-time
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-    InterviewInput:
-      type: object
-      properties:
-        job_uuid:
-          type: string
-          format: uuid
-          description: The job this interview belongs to.
-        type:
-          type: string
-          description: The interview type, e.g. one_way or live.
-        candidate_first_name:
-          type: string
-        candidate_last_name:
-          type: string
-        candidate_email:
-          type: string
-          format: email
-        question_set_uuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          description: Optional question set to apply to the interview.
   responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     NotFound:
       description: The resource was not found.
       content:
@@ -174,30 +127,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
-    OrderBy:
-      name: orderby
-      in: query
-      required: false
-      description: Sort order, e.g. title_asc or updated_desc.
-      schema:
-        type: string
-        example: updated_desc
-    StatusFilter:
-      name: status[]
-      in: query
-      required: false
-      description: Filter by one or more statuses.
-      schema:
-        type: array
-        items:
-          type: string
     Uuid:
       name: uuid
       in: path
@@ -223,6 +153,76 @@ components:
         type: array
         items:
           type: string
+    OrderBy:
+      name: orderby
+      in: query
+      required: false
+      description: Sort order, e.g. title_asc or updated_desc.
+      schema:
+        type: string
+        example: updated_desc
+    StatusFilter:
+      name: status[]
+      in: query
+      required: false
+      description: Filter by one or more statuses.
+      schema:
+        type: array
+        items:
+          type: string
+  schemas:
+    InterviewInput:
+      type: object
+      properties:
+        job_uuid:
+          type: string
+          format: uuid
+          description: The job this interview belongs to.
+        type:
+          type: string
+          description: The interview type, e.g. one_way or live.
+        candidate_first_name:
+          type: string
+        candidate_last_name:
+          type: string
+        candidate_email:
+          type: string
+          format: email
+        question_set_uuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: Optional question set to apply to the interview.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    Interview:
+      allOf:
+      - $ref: '#/components/schemas/InterviewInput'
+      - type: object
+        properties:
+          uuid:
+            type: string
+            format: uuid
+          status:
+            type: string
+            description: Lifecycle status - created, accepted, completed, expired, rescheduled, reset, or rated.
+          rating:
+            type:
+            - number
+            - 'null'
+            description: Reviewer rating captured when the interview is evaluated.
+          created_at:
+            type: string
+            format: date-time
+          updated_at:
+            type: string
+            format: date-time
   securitySchemes:
     basicAuth:
       type: http

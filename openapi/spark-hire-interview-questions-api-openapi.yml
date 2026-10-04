@@ -180,24 +180,40 @@ paths:
         '204':
           description: The question set was deleted.
 components:
+  parameters:
+    Uuid:
+      name: uuid
+      in: path
+      required: true
+      description: The UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+    Range:
+      name: range
+      in: query
+      required: false
+      description: Pagination range, e.g. 1-20 or 10-30.
+      schema:
+        type: string
+        example: 1-20
+    OrderBy:
+      name: orderby
+      in: query
+      required: false
+      description: Sort order, e.g. title_asc or updated_desc.
+      schema:
+        type: string
+        example: updated_desc
   schemas:
-    QuestionInput:
-      type: object
-      properties:
-        text:
-          type: string
-          description: The question prompt shown to the candidate.
-        type:
-          type: string
-          description: Answer format, e.g. video, text, or multiple_choice.
-        think_time:
-          type: integer
-          description: Seconds the candidate has to prepare.
-        response_time:
-          type: integer
-          description: Seconds allotted for the candidate's response.
-        order:
-          type: integer
+    Question:
+      allOf:
+      - $ref: '#/components/schemas/QuestionInput'
+      - type: object
+        properties:
+          uuid:
+            type: string
+            format: uuid
     QuestionSet:
       allOf:
       - $ref: '#/components/schemas/QuestionSetInput'
@@ -216,14 +232,6 @@ components:
           type: string
         message:
           type: string
-    Question:
-      allOf:
-      - $ref: '#/components/schemas/QuestionInput'
-      - type: object
-        properties:
-          uuid:
-            type: string
-            format: uuid
     QuestionSetInput:
       type: object
       properties:
@@ -233,6 +241,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/QuestionInput'
+    QuestionInput:
+      type: object
+      properties:
+        text:
+          type: string
+          description: The question prompt shown to the candidate.
+        type:
+          type: string
+          description: Answer format, e.g. video, text, or multiple_choice.
+        think_time:
+          type: integer
+          description: Seconds the candidate has to prepare.
+        response_time:
+          type: integer
+          description: Seconds allotted for the candidate's response.
+        order:
+          type: integer
   responses:
     NotFound:
       description: The resource was not found.
@@ -240,31 +265,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    OrderBy:
-      name: orderby
-      in: query
-      required: false
-      description: Sort order, e.g. title_asc or updated_desc.
-      schema:
-        type: string
-        example: updated_desc
-    Uuid:
-      name: uuid
-      in: path
-      required: true
-      description: The UUID of the resource.
-      schema:
-        type: string
-        format: uuid
-    Range:
-      name: range
-      in: query
-      required: false
-      description: Pagination range, e.g. 1-20 or 10-30.
-      schema:
-        type: string
-        example: 1-20
   securitySchemes:
     basicAuth:
       type: http

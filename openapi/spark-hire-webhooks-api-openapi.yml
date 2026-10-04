@@ -80,14 +80,28 @@ paths:
         '200':
           description: The event was queued for replay.
 components:
-  responses:
-    NotFound:
-      description: The resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    Uuid:
+      name: uuid
+      in: path
+      required: true
+      description: The UUID of the resource.
+      schema:
+        type: string
+        format: uuid
   schemas:
+    WebhookInput:
+      type: object
+      required:
+      - url
+      - event
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The endpoint Spark Hire POSTs the changed object to.
+        event:
+          $ref: '#/components/schemas/WebhookEventType'
     WebhookEventType:
       type: string
       enum:
@@ -109,18 +123,6 @@ components:
           type: string
         message:
           type: string
-    WebhookInput:
-      type: object
-      required:
-      - url
-      - event
-      properties:
-        url:
-          type: string
-          format: uri
-          description: The endpoint Spark Hire POSTs the changed object to.
-        event:
-          $ref: '#/components/schemas/WebhookEventType'
     Webhook:
       allOf:
       - $ref: '#/components/schemas/WebhookInput'
@@ -132,15 +134,13 @@ components:
           created_at:
             type: string
             format: date-time
-  parameters:
-    Uuid:
-      name: uuid
-      in: path
-      required: true
-      description: The UUID of the resource.
-      schema:
-        type: string
-        format: uuid
+  responses:
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http
