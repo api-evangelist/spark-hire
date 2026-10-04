@@ -189,6 +189,9 @@ apis:
   - type: OpenCollection
     url: collections/spark-hire.opencollection.json
 common:
+- type: CapabilityMap
+  url: capabilities/spark-hire-capability-edges.yml
+  name: Spark Hire Business Capability Map
 - type: AgenticAccess
   url: agentic-access/spark-hire-agentic-access.yml
 - type: DomainSecurity
