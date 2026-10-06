@@ -53,7 +53,7 @@ tags_raw:
 - Talent Assessment
 - ATS
 created: '2026-07-10'
-modified: '2026-07-10'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: spark-hire:spark-hire-account-api
@@ -189,6 +189,8 @@ apis:
   - type: OpenCollection
     url: collections/spark-hire.opencollection.json
 common:
+- url: https://www.sparkhire.com/feed/
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/spark-hire-capability-edges.yml
   name: Spark Hire Business Capability Map
