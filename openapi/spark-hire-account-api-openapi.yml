@@ -70,19 +70,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    UserInput:
-      type: object
-      properties:
-        first_name:
-          type: string
-        last_name:
-          type: string
-        email:
-          type: string
-          format: email
-        permission_level:
-          type: string
-          description: The user's role/permission level within the company.
     Company:
       type: object
       properties:
@@ -94,19 +81,6 @@ components:
         created_at:
           type: string
           format: date-time
-    Plan:
-      type: object
-      properties:
-        name:
-          type: string
-        active_jobs_limit:
-          type: integer
-        users_limit:
-          type: integer
-        products:
-          type: array
-          items:
-            type: string
     User:
       allOf:
       - $ref: '#/components/schemas/UserInput'
@@ -121,6 +95,32 @@ components:
           updated_at:
             type: string
             format: date-time
+    UserInput:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        permission_level:
+          type: string
+          description: The user's role/permission level within the company.
+    Plan:
+      type: object
+      properties:
+        name:
+          type: string
+        active_jobs_limit:
+          type: integer
+        users_limit:
+          type: integer
+        products:
+          type: array
+          items:
+            type: string
     Error:
       type: object
       properties:
@@ -138,12 +138,6 @@ components:
         type: string
         format: uuid
   responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     RateLimited:
       description: Rate limit exceeded (400 requests per minute). Retry after the number of seconds in the X-Rate-Limit-Try-Again-Seconds header.
       headers:
@@ -151,6 +145,12 @@ components:
           description: Seconds to wait before retrying.
           schema:
             type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
       content:
         application/json:
           schema:

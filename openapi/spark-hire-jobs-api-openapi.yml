@@ -105,16 +105,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    JobInput:
-      type: object
-      properties:
-        title:
-          type: string
-        status:
-          type: string
-          description: e.g. open, closed, draft.
-        description:
-          type: string
     Job:
       allOf:
       - $ref: '#/components/schemas/JobInput'
@@ -129,6 +119,16 @@ components:
           updated_at:
             type: string
             format: date-time
+    JobInput:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: string
+          description: e.g. open, closed, draft.
+        description:
+          type: string
     Error:
       type: object
       properties:
@@ -137,14 +137,6 @@ components:
         message:
           type: string
   parameters:
-    Uuid:
-      name: uuid
-      in: path
-      required: true
-      description: The UUID of the resource.
-      schema:
-        type: string
-        format: uuid
     Range:
       name: range
       in: query
@@ -153,14 +145,6 @@ components:
       schema:
         type: string
         example: 1-20
-    OrderBy:
-      name: orderby
-      in: query
-      required: false
-      description: Sort order, e.g. title_asc or updated_desc.
-      schema:
-        type: string
-        example: updated_desc
     StatusFilter:
       name: status[]
       in: query
@@ -170,7 +154,29 @@ components:
         type: array
         items:
           type: string
+    Uuid:
+      name: uuid
+      in: path
+      required: true
+      description: The UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+    OrderBy:
+      name: orderby
+      in: query
+      required: false
+      description: Sort order, e.g. title_asc or updated_desc.
+      schema:
+        type: string
+        example: updated_desc
   responses:
+    BadRequest:
+      description: The request was malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing or invalid API key.
       content:
@@ -179,12 +185,6 @@ components:
             $ref: '#/components/schemas/Error'
     NotFound:
       description: The resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed.
       content:
         application/json:
           schema:

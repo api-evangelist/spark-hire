@@ -108,34 +108,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
-    Uuid:
-      name: uuid
-      in: path
-      required: true
-      description: The UUID of the resource.
-      schema:
-        type: string
-        format: uuid
     Range:
       name: range
       in: query
@@ -144,6 +117,23 @@ components:
       schema:
         type: string
         example: 1-20
+    StatusFilter:
+      name: status[]
+      in: query
+      required: false
+      description: Filter by one or more statuses.
+      schema:
+        type: array
+        items:
+          type: string
+    Uuid:
+      name: uuid
+      in: path
+      required: true
+      description: The UUID of the resource.
+      schema:
+        type: string
+        format: uuid
     TypeFilter:
       name: type[]
       in: query
@@ -161,15 +151,6 @@ components:
       schema:
         type: string
         example: updated_desc
-    StatusFilter:
-      name: status[]
-      in: query
-      required: false
-      description: Filter by one or more statuses.
-      schema:
-        type: array
-        items:
-          type: string
   schemas:
     InterviewInput:
       type: object
@@ -194,13 +175,6 @@ components:
           - 'null'
           format: uuid
           description: Optional question set to apply to the interview.
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
     Interview:
       allOf:
       - $ref: '#/components/schemas/InterviewInput'
@@ -223,6 +197,32 @@ components:
           updated_at:
             type: string
             format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http

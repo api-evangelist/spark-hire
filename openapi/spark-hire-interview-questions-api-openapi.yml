@@ -181,14 +181,6 @@ paths:
           description: The question set was deleted.
 components:
   parameters:
-    Uuid:
-      name: uuid
-      in: path
-      required: true
-      description: The UUID of the resource.
-      schema:
-        type: string
-        format: uuid
     Range:
       name: range
       in: query
@@ -197,6 +189,14 @@ components:
       schema:
         type: string
         example: 1-20
+    Uuid:
+      name: uuid
+      in: path
+      required: true
+      description: The UUID of the resource.
+      schema:
+        type: string
+        format: uuid
     OrderBy:
       name: orderby
       in: query
@@ -225,22 +225,6 @@ components:
           created_at:
             type: string
             format: date-time
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-    QuestionSetInput:
-      type: object
-      properties:
-        title:
-          type: string
-        questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuestionInput'
     QuestionInput:
       type: object
       properties:
@@ -258,6 +242,22 @@ components:
           description: Seconds allotted for the candidate's response.
         order:
           type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    QuestionSetInput:
+      type: object
+      properties:
+        title:
+          type: string
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionInput'
   responses:
     NotFound:
       description: The resource was not found.
