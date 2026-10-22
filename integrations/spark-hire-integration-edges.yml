@@ -7,23 +7,6 @@ checked:
 source:
 - bamboohr/integrations/bamboohr-integration-edges.yml
 edges:
-- partner_name: BambooHR (own)
-  partner: bamboohr
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://www.bamboohr.com/integrations/listings/spark-hire
-  mirror_of: bamboohr/integrations/bamboohr-integration-edges.yml
-  apps:
-  - Spark Hire
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Applicant Tracking Systems
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -49,6 +32,24 @@ edges:
     builder: unknown (not in the directory record)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: BambooHR (own)
+  partner: bamboohr
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.bamboohr.com/integrations/listings/spark-hire
+  mirror_of: bamboohr/integrations/bamboohr-integration-edges.yml
+  apps:
+  - Spark Hire
+  - Spark Hire Recruit
+  listing_count: 2
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Applicant Tracking Systems
 - partner_name: Slack (own)
   partner: slack
   partner_match: mirror
