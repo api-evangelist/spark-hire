@@ -1,4 +1,4 @@
-# Spark Hire (spark-hire)
+# Spark Hire
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,76 +64,128 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Spark Hire is a video interviewing and talent assessment platform that lets recruiters screen, interview, and evaluate candidates asynchronously (one-way) and live. The Spark Hire REST API embeds video interviewing into an applicant tracking system or custom hiring app - programmatically managing jobs, interviews, interview questions and reusable question sets, company users (evaluators) and their integration keys, candidate share links, and webhook subscriptions for interview and job lifecycle events.
+Spark Hire is a video interviewing and talent assessment platform that lets recruiters screen, interview, and evaluate candidates asynchronously and live. The Spark Hire REST API embeds video interviewing into an applicant tracking system or custom hiring app - programmatically managing jobs, one-way and live interviews, interview questions and question sets, company users (evaluators), candidate share links, and webhook subscriptions for interview and job lifecycle events. Responses are JSON over HTTPS under https://api.sparkhire.com/v1.0, authenticated with a per-user API key via HTTP Basic. API access is not self-serve - it must be enabled on your account by Spark Hire - but the API reference is fully public.
 
-The API is RESTful with JSON responses served under `https://api.sparkhire.com/v1.0`. Authentication is HTTP Basic: the username is your API key and the password is ignored. Keys are scoped to an individual user and respect that user's permission level.
+**Areas:** Video Interviewing · Recruiting · Hiring · Human Resources · Talent Assessment · Applicant Tracking
 
-**Access model:** The API reference at [https://docs.sparkhire.com/](https://docs.sparkhire.com/) is fully public, but API access is **not self-serve** - it must be enabled on your Spark Hire account by Spark Hire before keys will work. Endpoint paths and behavior in this catalog are transcribed from that public reference; the OpenAPI request/response schemas are honestly modeled from the documented resources and were not exercised against a live account (access-gated).
+## Spark Hire on APIs.io
 
-**Rate limit:** 400 requests per minute. A 429 response includes an `X-Rate-Limit-Try-Again-Seconds` header. Prefer webhooks over polling.
+Everything profiled for Spark Hire is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/spark-hire/](https://apis.io/providers/spark-hire/)** — or go straight to one of the APIs or properties below.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/spark-hire/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/spark-hire/refs/heads/main/apis.yml)
+### APIs (7)
 
-## Tags
+- [Spark Hire Account API](https://apis.io/apis/spark-hire/spark-hire-account-api/) — Authenticated user, plan, and company context.
+- [Spark Hire Interview Questions API](https://apis.io/apis/spark-hire/spark-hire-interview-questions-api/) — Questions within an interview and reusable question sets.
+- [Spark Hire Interviews API](https://apis.io/apis/spark-hire/spark-hire-interviews-api/) — One-way and live video interviews.
+- [Spark Hire Jobs API](https://apis.io/apis/spark-hire/spark-hire-jobs-api/) — Jobs (requisitions) that interviews are organized under.
+- [Spark Hire Share Links API](https://apis.io/apis/spark-hire/spark-hire-share-links-api/) — Basic and advanced share links for reviewing interviews.
+- [Spark Hire Users API](https://apis.io/apis/spark-hire/spark-hire-users-api/) — Company users (evaluators) and their integration API keys.
+- [Spark Hire Webhooks API](https://apis.io/apis/spark-hire/spark-hire-webhooks-api/) — Event subscriptions for interview and job lifecycle changes.
 
-- Video Interviewing
-- Recruiting
-- Hiring
-- HR Tech
-- Talent Assessment
-- ATS
+### Published properties
 
-## Timestamps
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Created:** 2026-07-10
-- **Modified:** 2026-07-10
+#### Agentic access (1)
 
-## APIs
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Spark Hire Interviews API
+- [Spark Hire Agentic Access](https://apis.io/agentic-access/spark-hire/spark-hire-agentic-access/)
 
-Create, list, retrieve, update, and delete one-way and live video interviews - the core artifact a candidate records or attends. Interviews are tied to a job and a candidate, carry a status lifecycle (created, accepted, completed, expired, rescheduled, reset, rated), and can be surfaced to reviewers via basic or advanced share links. Candidate evaluation is captured as interview ratings, exposed through the `InterviewRated` webhook event.
+#### Collections (8)
 
-- **Base URL:** `https://api.sparkhire.com/v1.0`
-- [Documentation](https://docs.sparkhire.com/)
-- [OpenAPI](openapi/spark-hire-openapi.yml)
-- [Postman Collection](collections/spark-hire.postman_collection.json)
-- [Open Collection](collections/spark-hire.opencollection.json)
+Postman and Open Collection request collections.
 
-### Spark Hire Interview Questions API
+- [Spark Hire API](https://apis.io/collections/spark-hire/open-spark-hire/)
+- [Spark Hire Account API](https://apis.io/collections/spark-hire/open-spark-hire-account-api/)
+- [Spark Hire Account Interview Questions API](https://apis.io/collections/spark-hire/open-spark-hire-interview-questions-api/)
+- [Spark Hire Account Interviews API](https://apis.io/collections/spark-hire/open-spark-hire-interviews-api/)
+- [Spark Hire Account Jobs API](https://apis.io/collections/spark-hire/open-spark-hire-jobs-api/)
+- [Spark Hire Account Share Links API](https://apis.io/collections/spark-hire/open-spark-hire-share-links-api/)
+- [Spark Hire Account Users API](https://apis.io/collections/spark-hire/open-spark-hire-users-api/)
+- [Spark Hire Account Webhooks API](https://apis.io/collections/spark-hire/open-spark-hire-webhooks-api/)
 
-Manage the questions a candidate answers within an interview (`/interviews/:uuid/questions`), plus reusable `question_sets` that standardize screening across interviews.
+#### Security (2)
 
-### Spark Hire Jobs API
+Authentication, trust centre, and vulnerability disclosure.
 
-Create, list, retrieve, update, and delete jobs (requisitions) that interviews are organized under. Jobs emit `JobCreated`, `JobUpdated`, and `JobDeleted` webhook events for keeping an external ATS in sync.
+- [Spark Hire Authentication](https://apis.io/security/spark-hire/spark-hire-authentication/)
+- [Spark Hire Domain Security](https://apis.io/security/spark-hire/spark-hire-domain-security/)
 
-### Spark Hire Users API
+#### Plans and pricing (1)
 
-Manage the company users who create interviews and evaluate candidates - list, create, get, update, and delete users, and provision or rotate each user's integration API key. Includes `/me` for the authenticated user.
+Published plans, tiers and prices.
 
-### Spark Hire Webhooks API
+- [Spark Hire Plans Pricing](https://apis.io/plans/spark-hire/spark-hire-plans-pricing/)
 
-Register, list, and delete webhook subscriptions so Spark Hire POSTs changed objects to your server instead of you polling. Events: `InterviewCreated`, `InterviewAccepted`, `InterviewCompleted`, `InterviewDeleted`, `InterviewExpired`, `InterviewRescheduled`, `InterviewReset`, `InterviewRated`, `JobCreated`, `JobUpdated`, `JobDeleted`, with a replay endpoint for missed deliveries.
+#### Rate limits (1)
 
-### Spark Hire Account and Plan API
+Published request limits.
 
-Read-oriented endpoints for account context - the authenticated user (`/me`), the company plan and its limits (`/plan`), and company details (`/companies/:uuid`).
+- [Spark Hire Rate Limits](https://apis.io/rate-limits/spark-hire/spark-hire-rate-limits/)
 
-## Common Properties
+#### FinOps (1)
 
-- [LinkedIn](https://www.linkedin.com/company/spark-hire)
+What the API costs to run, by operation.
+
+- [Spark Hire Finops](https://apis.io/finops/spark-hire/spark-hire-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.sparkhire.com)
 - [Documentation](https://docs.sparkhire.com/)
-- [Plans](plans/spark-hire-plans-pricing.yml)
-- [Rate Limits](rate-limits/spark-hire-rate-limits.yml)
-- [Fin Ops](finops/spark-hire-finops.yml)
 
-## WebSocket Review
+## API Evangelist rating
 
-Spark Hire does **not** expose a documented public WebSocket API. Its API is request/response REST over HTTPS plus outbound HTTP webhooks. See [review.yml](review.yml).
+**Kin Score 22.1** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 49.4 |
+| Contract governance | 0.0 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 13.1 |
+| Access clarity | 7.9 |
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Employment & Payroll
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/spark-hire/](https://apis.io/providers/spark-hire/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Spark Hire: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/spark-hire/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
